@@ -22,6 +22,25 @@
   box-sizing: border-box;
 }
 
+/* PERFORMANCE: Optimize images and media */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* PERFORMANCE: Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @layer utilities {
   .perspective-1000 {
     perspective: 1000px;
@@ -253,6 +272,17 @@
       transform: scale(1.05) !important;
       transition: all 0.3s ease !important;
     }
+    
+    /* MOBILE PERFORMANCE: Reduce blur on low-end devices */
+    .glass-module {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    
+    .glass-pill {
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
   }
 
   .pulse-glow {
@@ -331,6 +361,11 @@ body {
   text-size-adjust: 100%;
   /* SMOOTH SCROLLING */
   scroll-behavior: smooth;
+  /* PERFORMANCE: Enable hardware acceleration */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* RESPONSIVE: Prevent zoom on input focus (iOS) */
+  touch-action: manipulation;
 }
 
 /* SMOOTH SCROLLING */
@@ -338,18 +373,67 @@ html {
   scroll-behavior: smooth;
   background: radial-gradient(circle at center, #E5E5E7 0%, #86868B 100%);
   background-attachment: fixed;
+  /* PERFORMANCE: Optimize rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* RESPONSIVE BREAKPOINT UTILITIES */
+/* RESPONSIVE BREAKPOINT UTILITIES - Enhanced for all devices */
 @media (min-width: 375px) {
   .xs\:inline { display: inline; }
   .xs\:hidden { display: none; }
+}
+
+@media (min-width: 640px) {
+  .sm\:snap-none {
+    scroll-snap-type: none;
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .bg-grid {
+    background-size: clamp(40px, 6vw, 50px) clamp(40px, 6vw, 50px);
+  }
+}
+
+/* Large desktop optimization */
+@media (min-width: 1920px) {
+  .bg-grid {
+    background-size: 60px 60px;
+  }
 }
 
 /* TOUCH OPTIMIZATION */
 .touch-manipulation {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  /* Prevent text selection on tap */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* RESPONSIVE TYPOGRAPHY: Ensure readability on all devices */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  line-height: 1.2;
+}
+
+p, li, span {
+  text-wrap: pretty;
+  line-height: 1.6;
+}
+
+/* RESPONSIVE IMAGES: Prevent layout shift */
+img {
+  content-visibility: auto;
+}
+
+/* PERFORMANCE: Optimize long lists */
+.glass-module {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 /* MOBILE BUTTON FEEDBACK - Space Gray Theme */
@@ -395,6 +479,7 @@ html {
 /* SNAP SCROLLING FOR MOBILE */
 .snap-x {
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 .snap-start {
   scroll-snap-align: start;

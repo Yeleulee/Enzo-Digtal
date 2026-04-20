@@ -8,9 +8,8 @@ import { motion } from 'motion/react';
 import { 
   ArrowRight, 
   Terminal, 
-  Check, 
   Bot,
-  Share2
+  Check
 } from 'lucide-react';
 import { WaitlistHero } from './components/ui/waitlist-hero';
 
@@ -204,45 +203,6 @@ const CATALOG_ITEMS = [
     botLink: 'https://t.me/Ezonstorebot' 
   },
 ];
-
-const ShareButton = ({ item }: { item: typeof CATALOG_ITEMS[0] }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleShare = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const shareData = {
-      title: item.name,
-      text: `Check out ${item.name} on Ezon: ${item.desc}`,
-      url: window.location.href,
-    };
-    
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.error('Error sharing:', err);
-      }
-    } else {
-      navigator.clipboard.writeText(`${shareData.title}\n${shareData.text}\n${shareData.url}`);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
-
-  return (
-    <button 
-      onClick={handleShare}
-      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-2 sm:p-2.5 bg-[#3A3A3C]/80 hover:bg-[#1D1D1F] text-white rounded-full backdrop-blur-md transition-all border border-[#A1A1A6]/30 hover:border-[#F5F5F7]/50 z-20 shadow-lg hover:shadow-[0_0_15px_rgba(245,245,247,0.3)] group/btn touch-manipulation"
-      style={{ minWidth: '44px', minHeight: '44px' }}
-      title="Share"
-      aria-label="Share this service"
-    >
-      {copied ? <Check className="w-4 h-4 text-[#F5F5F7] drop-shadow-[0_0_8px_rgba(245,245,247,0.6)] group-hover/btn:text-white" /> : <Share2 className="w-4 h-4 opacity-70 group-hover/btn:opacity-100" />}
-    </button>
-  );
-};
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -450,8 +410,6 @@ export default function App() {
                  />
                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" 
                       style={{ borderRadius: 'clamp(0.875rem, 2.5vw, 1.25rem)' }} />
-                 
-                 <ShareButton item={item} />
               </div>
               
               {/* Content Area */}
@@ -616,8 +574,8 @@ export default function App() {
                style={{ 
                  padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
                  minHeight: '48px',
-                 backgroundColor: '#A1A1A6', // Lighter Silver Mid
-                 color: '#000000', // Pure black for contrast
+                 backgroundColor: '#A1A1A6',
+                 color: '#000000',
                  borderColor: 'rgba(226,226,226,0.6)',
                  boxShadow: '0 0 20px rgba(161,161,166,0.3)'
                }}
@@ -632,10 +590,6 @@ export default function App() {
                  e.currentTarget.style.color = '#000000';
                  e.currentTarget.style.borderColor = 'rgba(226,226,226,0.6)';
                  e.currentTarget.style.boxShadow = '0 0 20px rgba(161,161,166,0.3)';
-               }}
-               style={{ 
-                 padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
-                 minHeight: '48px'
                }}
                aria-label="Contact Support via Telegram"
             >

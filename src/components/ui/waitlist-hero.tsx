@@ -3,68 +3,14 @@
 export const WaitlistHero = () => {
   return (
     <div className="w-full h-full bg-grid flex items-center justify-center relative overflow-hidden" style={{ minHeight: '100svh' }}>
-      {/* Glassy Liquid Glass Background Layer */}
-      <div className="absolute inset-0 overflow-hidden" style={{ background: 'radial-gradient(circle at center, rgba(245,245,247,0.4) 0%, rgba(226,226,226,0.3) 50%, rgba(161,161,166,0.2) 100%)' }}>
-        {/* Animated Glass Orbs */}
-        <div className="absolute top-[20%] left-[15%] w-96 h-96 rounded-full blur-[120px] animate-pulse" 
-             style={{ 
-               background: 'radial-gradient(circle, rgba(245,245,247,0.6) 0%, rgba(226,226,226,0.4) 50%, transparent 100%)',
-               animation: 'float 20s ease-in-out infinite'
-             }} />
-        <div className="absolute bottom-[15%] right-[20%] w-80 h-80 rounded-full blur-[100px]" 
-             style={{ 
-               background: 'radial-gradient(circle, rgba(226,226,226,0.5) 0%, rgba(161,161,166,0.3) 50%, transparent 100%)',
-               animation: 'float 25s ease-in-out infinite reverse'
-             }} />
-        <div className="absolute top-[50%] right-[10%] w-64 h-64 rounded-full blur-[80px]" 
-             style={{ 
-               background: 'radial-gradient(circle, rgba(245,245,247,0.4) 0%, rgba(226,226,226,0.2) 50%, transparent 100%)',
-               animation: 'float 18s ease-in-out infinite'
-             }} />
-        
-        {/* Liquid Glass Overlay with Shimmer */}
-        <div className="absolute inset-0 backdrop-blur-[2px]" 
-             style={{ 
-               background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(245,245,247,0.15) 100%)',
-               backgroundSize: '200% 200%',
-               animation: 'shimmer 15s ease-in-out infinite'
-             }} />
-      </div>
-
-      {/* Floating Animation Keyframes */}
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -30px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        
-        @keyframes shimmer {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
-
       {/* MOBILE: Professional, Clean Design - Space Gray Theme */}
-      <div className="block md:hidden w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden" style={{ background: 'radial-gradient(circle at center, #E5E5E7 0%, #86868B 100%)' }}>
-        {/* Subtle Background Gradient - Professional Look */}
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          {/* Elegant gradient overlays */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(226,226,226,0.3) 0%, transparent 50%, rgba(161,161,166,0.3) 100%)' }} />
-          <div className="absolute top-0 left-0 right-0 h-1/3" style={{ background: 'linear-gradient(to bottom, rgba(245,245,247,0.6) 0%, transparent 100%)' }} />
-          <div className="absolute bottom-0 left-0 right-0 h-1/2" style={{ background: 'linear-gradient(to top, #86868B 0%, rgba(134,134,139,0.9) 50%, transparent 100%)' }} />
-          
-          {/* Subtle accent glows - not distracting */}
-          <div className="absolute top-[20%] right-[10%] w-64 h-64 rounded-full blur-[100px]" style={{ background: 'rgba(161,161,166,0.15)' }} />
-          <div className="absolute bottom-[30%] left-[10%] w-48 h-48 rounded-full blur-[80px]" style={{ background: 'rgba(226,226,226,0.12)' }} />
-        </div>
-        
+      <div className="block md:hidden w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden">
         {/* Main Content - Centered Professional Layout */}
         <div className="relative z-10 w-full max-w-md mx-auto px-4 flex flex-col items-center justify-center text-center space-y-8">
           {/* Logo/Brand Section */}
           <div className="space-y-4">
-            {/* Headline with Glassmorphism Background */}
-            <div className="glass-subtle rounded-2xl p-6 backdrop-blur-[25px]" style={{ borderColor: 'rgba(161,161,166,0.4)' }}>
+            {/* Headline with Glass Module Background */}
+            <div className="glass-module rounded-2xl p-6">
               <h1 className="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
                 <span className="block mb-2" style={{ color: '#000000' }}>Welcome to</span>
                 <span 
@@ -80,8 +26,8 @@ export const WaitlistHero = () => {
             </div>
           </div>
           
-          {/* Description with Glassmorphism */}
-          <div className="glass-subtle rounded-xl p-4 backdrop-blur-[20px]" style={{ borderColor: 'rgba(161,161,166,0.4)' }}>
+          {/* Description with Glass Module */}
+          <div className="glass-module rounded-xl p-4">
             <p className="text-sm xs:text-base sm:text-lg font-normal leading-relaxed max-w-sm" style={{ color: '#000000' }}>
               Premium subscriptions and digital services delivered instantly through our secure platform.
             </p>
@@ -130,9 +76,9 @@ export const WaitlistHero = () => {
             </a>
           </div>
           
-          {/* Trust Indicators with Glassmorphism */}
-          <div className="glass-subtle rounded-lg p-3 backdrop-blur-[15px]" style={{ borderColor: 'rgba(161,161,166,0.3)' }}>
-            <div className="flex items-center justify-center gap-6 text-xs" style={{ color: '#A1A1A6' }}>
+          {/* Trust Indicators with Glass Module */}
+          <div className="glass-module rounded-lg p-3">
+            <div className="flex items-center justify-center gap-6 text-xs" style={{ color: '#3A3A3C' }}>
               <div className="flex items-center gap-1.5">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#3A3A3C' }}>
                   <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -163,48 +109,8 @@ export const WaitlistHero = () => {
         </div>
       </div>
 
-      {/* DESKTOP & TABLET: Full interactive experience with Space Gray Theme and Glassy Liquid Background */}
+      {/* DESKTOP & TABLET: Full interactive experience with Space Gray Theme */}
       <div className="hidden md:block w-full h-full overflow-hidden bg-grid relative" style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', minHeight: '100svh' }}>
-        {/* Glassy Liquid Glass Background Layer */}
-        <div className="absolute inset-0 overflow-hidden" style={{ background: 'radial-gradient(circle at center, rgba(245,245,247,0.4) 0%, rgba(226,226,226,0.3) 50%, rgba(161,161,166,0.2) 100%)' }}>
-          {/* Animated Glass Orbs - Larger for Desktop */}
-          <div className="absolute top-[15%] left-[10%] rounded-full blur-[150px]" 
-               style={{ 
-                 width: 'min(600px, 40vw)',
-                 height: 'min(600px, 40vw)',
-                 background: 'radial-gradient(circle, rgba(245,245,247,0.7) 0%, rgba(226,226,226,0.5) 50%, transparent 100%)',
-                 animation: 'float 20s ease-in-out infinite'
-               }} />
-          <div className="absolute bottom-[10%] right-[15%] rounded-full blur-[130px]" 
-               style={{ 
-                 width: 'min(500px, 35vw)',
-                 height: 'min(500px, 35vw)',
-                 background: 'radial-gradient(circle, rgba(226,226,226,0.6) 0%, rgba(161,161,166,0.4) 50%, transparent 100%)',
-                 animation: 'float 25s ease-in-out infinite reverse'
-               }} />
-          <div className="absolute top-[45%] right-[5%] rounded-full blur-[100px]" 
-               style={{ 
-                 width: 'min(400px, 30vw)',
-                 height: 'min(400px, 30vw)',
-                 background: 'radial-gradient(circle, rgba(245,245,247,0.5) 0%, rgba(226,226,226,0.3) 50%, transparent 100%)',
-                 animation: 'float 18s ease-in-out infinite'
-               }} />
-          <div className="absolute top-[60%] left-[20%] rounded-full blur-[110px]" 
-               style={{ 
-                 width: 'min(450px, 32vw)',
-                 height: 'min(450px, 32vw)',
-                 background: 'radial-gradient(circle, rgba(226,226,226,0.4) 0%, rgba(161,161,166,0.25) 50%, transparent 100%)',
-                 animation: 'float 22s ease-in-out infinite reverse'
-               }} />
-          
-          {/* Liquid Glass Overlay with Shimmer */}
-          <div className="absolute inset-0 backdrop-blur-[3px]" 
-               style={{ 
-                 background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%, rgba(245,245,247,0.2) 100%)',
-                 backgroundSize: '200% 200%',
-                 animation: 'shimmer 15s ease-in-out infinite'
-               }} />
-        </div>
         {/* Animation Styles */}
         <style>{`
           @keyframes spin-slow {
@@ -262,37 +168,8 @@ export const WaitlistHero = () => {
           }
         `}</style>
 
-        {/* Background Decorative Layer - CONTAINED within hero section */}
+        {/* Spinning images - Clean background, animations preserved */}
         <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
-          {/* Website-style background glows - Space Gray theme */}
-          <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-15">
-            <div className="absolute top-[-10%] right-[-5%] rounded-full blur-[180px]" 
-                 style={{ 
-                   width: 'min(900px, 160vw)', 
-                   height: 'min(900px, 160vw)',
-                   background: '#A1A1A6'
-                 }} />
-            <div className="absolute bottom-[-10%] left-[-10%] rounded-full blur-[180px]" 
-                 style={{ 
-                   width: 'min(1000px, 180vw)', 
-                   height: 'min(1000px, 180vw)',
-                   background: '#3A3A3C'
-                 }} />
-            <div className="absolute top-[30%] left-[40%] rounded-full blur-[180px]" 
-                 style={{ 
-                   width: 'min(700px, 140vw)', 
-                   height: 'min(700px, 140vw)',
-                   background: '#E2E2E2'
-                 }} />
-            <div className="absolute top-[50%] right-[20%] rounded-full blur-[200px] opacity-60" 
-                 style={{ 
-                   width: 'min(600px, 120vw)', 
-                   height: 'min(600px, 120vw)',
-                   background: '#A1A1A6'
-                 }} />
-          </div>
-
-          {/* Spinning images - Enhanced visibility and pop */}
           <div className="absolute inset-0 opacity-80" style={{
             perspective: "1200px",
             transform: "perspective(1200px) rotateX(15deg)",
@@ -369,21 +246,13 @@ export const WaitlistHero = () => {
           </div>
         </div>
 
-        {/* Gradient Overlay */}
-        <div
-          className="absolute inset-0 z-10 pointer-events-none"
-          style={{
-            background: `linear-gradient(to top, #86868B 10%, rgba(134,134,139, 0.8) 40%, transparent 100%)`,
-          }}
-        />
-
         {/* Content Container - Bottom Left Positioning */}
         <div className="relative z-20 w-full h-full flex items-end justify-start p-6 md:p-8 pb-12 md:pb-16 safe-area-bottom">
-          {/* Welcome Text - Bottom Left Position with ADEPT Typography Hierarchy and Glassmorphism */}
+          {/* Welcome Text - Bottom Left Position with ADEPT Typography Hierarchy */}
           <div className="text-left max-w-md lg:max-w-lg">
-            <div className="glass-subtle rounded-xl md:rounded-2xl p-5 md:p-6 backdrop-blur-[25px] animate-fade-in" style={{ borderColor: 'rgba(161,161,166,0.4)' }}>
+            <div className="glass-module rounded-xl md:rounded-2xl p-5 md:p-6 animate-fade-in">
               <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight mb-3 md:mb-4 animate-slide-up">
-                <span className="block" style={{ color: '#1D1D1F' }}>Welcome to</span>
+                <span className="block" style={{ color: '#000000' }}>Welcome to</span>
                 <span 
                   className="animate-glow block bg-clip-text text-transparent"
                   style={{
@@ -394,8 +263,8 @@ export const WaitlistHero = () => {
                 </span>
               </h1>
               
-              <p className="text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-md animate-fade-in-delay" style={{ color: '#3A3A3C' }}>
-                Enzo's advancements in premium subscriptions accelerate your digital lifestyle with proven results.
+              <p className="text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-md animate-fade-in-delay" style={{ color: '#000000' }}>
+                Ezon's advancements in premium subscriptions accelerate your digital lifestyle with proven results.
               </p>
             </div>
           </div>
