@@ -215,8 +215,10 @@ const ShareButton = ({ item }: { item: typeof CATALOG_ITEMS[0] }) => {
   return (
     <button 
       onClick={handleShare}
-      className="absolute top-3 right-3 p-2.5 bg-[#050810]/70 hover:bg-[#4a6fa5] text-white rounded-full backdrop-blur-md transition-all border border-[#4a6fa5]/15 hover:border-[#6b9bd1]/50 z-20 shadow-lg hover:shadow-[0_0_15px_rgba(107,155,209,0.6)] group/btn"
+      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-2 sm:p-2.5 bg-[#050810]/70 hover:bg-[#4a6fa5] text-white rounded-full backdrop-blur-md transition-all border border-[#4a6fa5]/15 hover:border-[#6b9bd1]/50 z-20 shadow-lg hover:shadow-[0_0_15px_rgba(107,155,209,0.6)] group/btn touch-manipulation"
+      style={{ minWidth: '44px', minHeight: '44px' }}
       title="Share"
+      aria-label="Share this service"
     >
       {copied ? <Check className="w-4 h-4 text-[#6b9bd1] drop-shadow-[0_0_8px_rgba(107,155,209,0.6)] group-hover/btn:text-white" /> : <Share2 className="w-4 h-4 opacity-70 group-hover/btn:opacity-100" />}
     </button>
@@ -249,11 +251,11 @@ export default function App() {
     <div className="min-h-screen bg-[#050810] bg-grid font-sans relative flex flex-col overflow-x-hidden">
       <BackgroundGlows />
 
-      {/* Nav */}
+      {/* Nav - Enhanced Mobile Responsiveness */}
       <nav className="fixed top-0 left-0 right-0 z-[100] glass-subtle backdrop-blur-[25px]" 
            style={{ 
-             padding: 'clamp(1rem, 3vw, 1.5rem)',
-             paddingTop: 'max(1rem, env(safe-area-inset-top))'
+             padding: 'clamp(0.75rem, 3vw, 1.5rem) clamp(1rem, 4vw, 2rem)',
+             paddingTop: 'max(0.75rem, env(safe-area-inset-top))'
            }}>
         <div className="flex justify-between items-center max-w-[90rem] mx-auto">
           <div className="logo-container group cursor-pointer">
@@ -261,25 +263,31 @@ export default function App() {
               src="/src/assets/logo.png" 
               alt="Enzo OS" 
               className="w-auto object-contain group-hover:scale-110 transition-transform duration-300"
-              style={{ height: 'clamp(3rem, 6vw, 4rem)' }}
+              style={{ height: 'clamp(2.5rem, 5vw, 4rem)' }}
             />
           </div>
-          <div className="flex items-center gap-4">
-            <button className="glass-pill flex items-center gap-2 group hover:bg-white/10 transition-all" 
-                    style={{ 
-                      padding: 'clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
-                      fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'
-                    }}>
-              Access Platform
-              <ArrowRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" 
+          <div className="flex items-center gap-2 sm:gap-4">
+            <button 
+              className="glass-pill flex items-center justify-center gap-1 sm:gap-2 group hover:bg-white/10 transition-all touch-manipulation" 
+              style={{ 
+                padding: 'clamp(0.625rem, 1.5vw, 0.75rem) clamp(0.875rem, 2.5vw, 1.5rem)',
+                fontSize: 'clamp(0.6875rem, 1.6vw, 0.875rem)',
+                minHeight: '44px',
+                minWidth: '44px'
+              }}
+              aria-label="Access Platform"
+            >
+              <span className="hidden xs:inline">Access Platform</span>
+              <span className="inline xs:hidden">Access</span>
+              <ArrowRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all flex-shrink-0" 
                           style={{ width: 'clamp(0.875rem, 2vw, 1rem)', height: 'clamp(0.875rem, 2vw, 1rem)' }} />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* RESPONSIVE HERO - Interactive on desktop, Simple CTA on mobile */}
-      <section className="relative w-full h-screen z-20 overflow-hidden">
+      {/* RESPONSIVE HERO - Optimized for all devices */}
+      <section className="relative w-full h-screen z-20 overflow-hidden" style={{ minHeight: '100svh' }}>
         <WaitlistHero />
       </section>
 
@@ -321,34 +329,38 @@ export default function App() {
           </div>
         </motion.div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap overflow-x-auto pb-4 scrollbar-hide" 
+        {/* Category Filters - Enhanced Mobile Scrolling */}
+        <div className="flex flex-nowrap overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap scrollbar-hide snap-x snap-mandatory sm:snap-none" 
              style={{ 
                gap: 'clamp(0.5rem, 1.5vw, 0.75rem)',
-               marginBottom: 'clamp(2rem, 4vw, 2.5rem)'
+               marginBottom: 'clamp(2rem, 4vw, 2.5rem)',
+               WebkitOverflowScrolling: 'touch'
              }}>
           {categories.map((cat) => (
             <button 
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`glass-pill font-mono uppercase tracking-wider transition-all whitespace-nowrap border ${
+              className={`glass-pill font-mono uppercase tracking-wider transition-all whitespace-nowrap border flex-shrink-0 snap-start touch-manipulation ${
                 activeCategory === cat ? 'bg-[#4a6fa5] text-white font-bold border-[#6b9bd1]/50 shadow-[0_0_20px_rgba(107,155,209,0.6)]' : 'border-transparent text-slate-400 hover:text-white hover:bg-[#2d4a7c]/20'
               }`}
               style={{ 
-                padding: 'clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.25rem)',
-                fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)'
+                padding: 'clamp(0.625rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.25rem)',
+                fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)',
+                minHeight: '44px'
               }}
+              aria-pressed={activeCategory === cat}
+              aria-label={`Filter by ${cat}`}
             >
               {cat}
             </button>
           ))}
         </div>
 
-        {/* Card Grid - INTRINSIC LAYOUT */}
-        <div className="grid gap-6 md:gap-8" 
+        {/* Card Grid - Fully Responsive Layout */}
+        <div className="grid gap-4 sm:gap-6 md:gap-8" 
              style={{ 
-               /* FLUID GRID: Auto-fit columns with minimum 280px, maximum 1fr */
-               gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))'
+               /* RESPONSIVE GRID: Single column on mobile, auto-fit on larger screens */
+               gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))'
              }}>
           {filteredItems.map((item, i) => (
             <motion.div 
@@ -356,11 +368,22 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px"}}
-              transition={{ delay: i * 0.05, ease: 'easeOut' }}
-              className="glass-module flex flex-col group hover:bg-white/[0.02] transition-all duration-500 relative overflow-hidden glass-hover"
+              transition={{ delay: Math.min(i * 0.05, 0.3), ease: 'easeOut' }}
+              whileTap={{ scale: 0.98 }}
+              className="glass-module flex flex-col group hover:bg-white/[0.02] active:bg-white/[0.03] transition-all duration-500 relative overflow-hidden glass-hover touch-manipulation cursor-pointer"
               style={{ 
                 padding: 'clamp(0.5rem, 1.5vw, 0.75rem)',
                 borderRadius: 'clamp(1rem, 3vw, 1.5rem)'
+              }}
+              onClick={(e) => {
+                // Allow card to be tappable on mobile for visual feedback
+                const target = e.target as HTMLElement;
+                if (!target.closest('a') && !target.closest('button')) {
+                  e.currentTarget.classList.add('card-tap-effect');
+                  setTimeout(() => {
+                    e.currentTarget.classList.remove('card-tap-effect');
+                  }, 200);
+                }
               }}
             >
               {/* Photo Area - CLS PREVENTION */}
@@ -377,10 +400,11 @@ export default function App() {
                    alt={item.name}
                    loading="lazy"
                    decoding="async"
+                   fetchpriority="low"
                    // CLS FIX: Explicit dimensions
                    width="600"
                    height="400"
-                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-transform transition-opacity duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0 will-change-transform"
+                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-active:opacity-100 transition-transform transition-opacity duration-700 group-hover:scale-105 group-active:scale-105 grayscale group-hover:grayscale-0 group-active:grayscale-0"
                  />
                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" 
                       style={{ borderRadius: 'clamp(0.875rem, 2.5vw, 1.25rem)' }} />
@@ -452,14 +476,17 @@ export default function App() {
                       href={item.botLink}
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-full relative z-10 glass-pill bg-[#4a6fa5] text-white font-mono font-bold flex items-center justify-center gap-2 hover:bg-[#6b9bd1] hover:text-white transition-all uppercase tracking-widest text-center shadow-[0_0_20px_rgba(74,111,165,0.5)] hover:shadow-[0_0_30px_rgba(107,155,209,0.7)] hover:border-[#6b9bd1]/60"
+                      className="w-full relative z-10 glass-pill bg-[#4a6fa5] text-white font-mono font-bold flex items-center justify-center gap-2 hover:bg-[#6b9bd1] hover:text-white transition-all uppercase tracking-widest text-center shadow-[0_0_20px_rgba(74,111,165,0.5)] hover:shadow-[0_0_30px_rgba(107,155,209,0.7)] hover:border-[#6b9bd1]/60 touch-manipulation active:scale-95"
                       style={{ 
-                        padding: 'clamp(0.75rem, 2vw, 0.875rem)',
-                        fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)'
+                        padding: 'clamp(0.875rem, 2vw, 1rem)',
+                        fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)',
+                        minHeight: '48px'
                       }}
+                      aria-label={`Request ${item.name} via Bot`}
                     >
-                      <Bot className="shrink-0" style={{ width: 'clamp(0.875rem, 2vw, 1rem)', height: 'clamp(0.875rem, 2vw, 1rem)' }} /> 
-                      Request via Bot
+                      <Bot className="shrink-0" style={{ width: 'clamp(1rem, 2vw, 1.125rem)', height: 'clamp(1rem, 2vw, 1.125rem)' }} /> 
+                      <span className="hidden xs:inline">Request via Bot</span>
+                      <span className="inline xs:hidden">Request</span>
                     </a>
                   </div>
                 </div>
@@ -468,21 +495,21 @@ export default function App() {
           ))}
         </div>
         
-        {/* Footer Card */}
+        {/* Footer Card - Mobile Optimized */}
         <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="glass-module flex flex-col md:flex-row items-center justify-between overflow-hidden relative"
+            className="glass-module flex flex-col md:flex-row items-center md:items-start justify-between overflow-hidden relative gap-6"
             style={{ 
               marginTop: 'clamp(3rem, 6vw, 4rem)',
-              padding: 'clamp(2rem, 5vw, 3rem)',
+              padding: 'clamp(1.5rem, 4vw, 3rem)',
               borderRadius: 'clamp(1.5rem, 4vw, 2rem)'
             }}
         >
             <div className="absolute top-0 right-0 bg-[#4a6fa5] rounded-full blur-[120px] opacity-20 pointer-events-none" 
                  style={{ width: 'min(18rem, 45vw)', height: 'min(18rem, 45vw)' }} />
             
-            <div className="relative z-10 mb-8 md:mb-0" style={{ maxWidth: 'min(32rem, 90vw)' }}>
-               <Bot className="text-[#6b9bd1] drop-shadow-[0_0_15px_rgba(107,155,209,0.6)]" 
+            <div className="relative z-10 text-center md:text-left" style={{ maxWidth: 'min(32rem, 90vw)' }}>
+               <Bot className="text-[#6b9bd1] drop-shadow-[0_0_15px_rgba(107,155,209,0.6)] mx-auto md:mx-0" 
                     style={{ 
                       width: 'clamp(2rem, 4vw, 2.5rem)',
                       height: 'clamp(2rem, 4vw, 2.5rem)',
@@ -490,7 +517,7 @@ export default function App() {
                     }} />
                <h3 className="font-semibold tracking-tighter" 
                    style={{ 
-                     fontSize: 'clamp(1.5rem, 4vw, 1.875rem)',
+                     fontSize: 'clamp(1.25rem, 3.5vw, 1.875rem)',
                      marginBottom: 'clamp(0.75rem, 2vw, 1rem)'
                    }}>
                  Automated Telegram Bot
@@ -507,11 +534,14 @@ export default function App() {
             <a href="https://t.me/enzo_agency_bot" 
                target="_blank" 
                rel="noopener noreferrer" 
-               className="relative z-10 pulse-glow glass-pill bg-[#050810]/50 text-white font-medium flex items-center gap-3 hover:bg-[#4a6fa5] hover:border-[#6b9bd1]/50 hover:shadow-[0_0_30px_rgba(107,155,209,0.6)] transition-all border-[#4a6fa5]/25"
+               className="relative z-10 pulse-glow glass-pill bg-[#050810]/50 text-white font-medium flex items-center justify-center gap-2 sm:gap-3 hover:bg-[#4a6fa5] hover:border-[#6b9bd1]/50 hover:shadow-[0_0_30px_rgba(107,155,209,0.6)] transition-all border-[#4a6fa5]/25 w-full md:w-auto touch-manipulation active:scale-95"
                style={{ 
-                 padding: 'clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)'
-               }}>
-               <Terminal className="opacity-70" 
+                 padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
+                 minHeight: '48px'
+               }}
+               aria-label="Launch Telegram Bot Protocol"
+            >
+               <Terminal className="opacity-70 flex-shrink-0" 
                          style={{ 
                            width: 'clamp(1rem, 2.5vw, 1.25rem)',
                            height: 'clamp(1rem, 2.5vw, 1.25rem)'
