@@ -282,7 +282,7 @@ export default function App() {
               src={logoImage} 
               alt="Enzo OS" 
               className="w-auto object-contain group-hover:scale-110 transition-transform duration-300"
-              style={{ height: 'clamp(2.5rem, 5vw, 4rem)' }}
+              style={{ height: 'clamp(3.5rem, 8vw, 4.5rem)' }}
             />
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
@@ -384,15 +384,19 @@ export default function App() {
           {filteredItems.map((item, i) => (
             <motion.div 
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px"}}
-              transition={{ delay: Math.min(i * 0.05, 0.3), ease: 'easeOut' }}
-              whileTap={{ scale: 0.98 }}
+              viewport={{ once: true, margin: "-10px", amount: 0.2 }}
+              transition={{ 
+                delay: Math.min(i * 0.02, 0.15), 
+                duration: 0.3,
+                ease: 'easeOut' 
+              }}
               className="glass-module flex flex-col group hover:bg-white/[0.02] active:bg-white/[0.03] transition-all duration-500 relative overflow-hidden glass-hover touch-manipulation cursor-pointer"
               style={{ 
                 padding: 'clamp(0.5rem, 1.5vw, 0.75rem)',
-                borderRadius: 'clamp(1rem, 3vw, 1.5rem)'
+                borderRadius: 'clamp(1rem, 3vw, 1.5rem)',
+                willChange: 'auto'
               }}
               onClick={(e) => {
                 // Allow card to be tappable on mobile for visual feedback
@@ -423,7 +427,11 @@ export default function App() {
                    // CLS FIX: Explicit dimensions
                    width="600"
                    height="400"
-                   className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-active:opacity-100 transition-transform transition-opacity duration-700 group-hover:scale-105 group-active:scale-105 grayscale group-hover:grayscale-0 group-active:grayscale-0"
+                   className="w-full h-full object-cover opacity-80 md:opacity-60 md:group-hover:opacity-100 transition-opacity duration-500 md:group-hover:scale-105 md:grayscale md:group-hover:grayscale-0"
+                   style={{ 
+                     transition: 'opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease',
+                     willChange: 'auto'
+                   }}
                  />
                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" 
                       style={{ borderRadius: 'clamp(0.875rem, 2.5vw, 1.25rem)' }} />
@@ -514,7 +522,7 @@ export default function App() {
           ))}
         </div>
         
-        {/* Footer Card - Mobile Optimized */}
+        {/* About Us Section - Mobile Optimized */}
         <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="glass-module flex flex-col md:flex-row items-center md:items-start justify-between overflow-hidden relative gap-6"
@@ -528,29 +536,37 @@ export default function App() {
                  style={{ width: 'min(18rem, 45vw)', height: 'min(18rem, 45vw)' }} />
             
             <div className="relative z-10 text-center md:text-left" style={{ maxWidth: 'min(32rem, 90vw)' }}>
-               <Bot className="text-[#6b9bd1] drop-shadow-[0_0_15px_rgba(107,155,209,0.6)] mx-auto md:mx-0" 
-                    style={{ 
-                      width: 'clamp(2rem, 4vw, 2.5rem)',
-                      height: 'clamp(2rem, 4vw, 2.5rem)',
-                      marginBottom: 'clamp(1rem, 2.5vw, 1.5rem)'
-                    }} />
-               <h3 className="font-semibold tracking-tighter" 
+               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#4a6fa5] to-[#6b9bd1] mb-4 mx-auto md:mx-0 shadow-[0_0_30px_rgba(107,155,209,0.4)]">
+                 <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                 </svg>
+               </div>
+               
+               <h3 className="font-semibold tracking-tighter mb-3" 
                    style={{ 
-                     fontSize: 'clamp(1.25rem, 3.5vw, 1.875rem)',
-                     marginBottom: 'clamp(0.75rem, 2vw, 1rem)'
+                     fontSize: 'clamp(1.25rem, 3.5vw, 1.875rem)'
                    }}>
-                 Automated Telegram Bot
+                 About Us
                </h3>
+               
+               <p className="text-slate-400 mb-4" 
+                  style={{ 
+                    fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
+                    lineHeight: '1.6'
+                  }}>
+                 Enzo Digital is your trusted partner for premium digital subscriptions and services. We provide instant access to top-tier streaming platforms, productivity tools, and gaming services at competitive prices.
+               </p>
+               
                <p className="text-slate-400" 
                   style={{ 
                     fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
                     lineHeight: '1.6'
                   }}>
-                 Select your tier and seamlessly continue the transaction through our encrypted bot interface. Instant onboarding, zero friction.
+                 Our mission is to make premium digital services accessible to everyone through secure, fast, and reliable delivery. With 24/7 customer support and a commitment to excellence, we ensure your digital lifestyle is always enhanced.
                </p>
             </div>
 
-            <a href="https://t.me/Ezonstorebot" 
+            <a href="https://t.me/enzostoreowner" 
                target="_blank" 
                rel="noopener noreferrer" 
                className="relative z-10 pulse-glow glass-pill bg-[#050810]/50 text-white font-medium flex items-center justify-center gap-2 sm:gap-3 hover:bg-[#4a6fa5] hover:border-[#6b9bd1]/50 hover:shadow-[0_0_30px_rgba(107,155,209,0.6)] transition-all border-[#4a6fa5]/25 w-full md:w-auto touch-manipulation active:scale-95"
@@ -558,14 +574,12 @@ export default function App() {
                  padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
                  minHeight: '48px'
                }}
-               aria-label="Launch Telegram Bot Protocol"
+               aria-label="Contact Support via Telegram"
             >
-               <Terminal className="opacity-70 flex-shrink-0" 
-                         style={{ 
-                           width: 'clamp(1rem, 2.5vw, 1.25rem)',
-                           height: 'clamp(1rem, 2.5vw, 1.25rem)'
-                         }} />
-               <span style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>Launch Protocol</span>
+               <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+               </svg>
+               <span style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>Contact Support</span>
             </a>
         </motion.div>
       </section>
