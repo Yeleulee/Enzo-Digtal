@@ -214,7 +214,7 @@ const ShareButton = ({ item }: { item: typeof CATALOG_ITEMS[0] }) => {
 
     const shareData = {
       title: item.name,
-      text: `Check out ${item.name} on Enzo OS: ${item.desc}`,
+      text: `Check out ${item.name} on Ezon: ${item.desc}`,
       url: window.location.href,
     };
     
@@ -234,31 +234,15 @@ const ShareButton = ({ item }: { item: typeof CATALOG_ITEMS[0] }) => {
   return (
     <button 
       onClick={handleShare}
-      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-2 sm:p-2.5 bg-[#050810]/70 hover:bg-[#4a6fa5] text-white rounded-full backdrop-blur-md transition-all border border-[#4a6fa5]/15 hover:border-[#6b9bd1]/50 z-20 shadow-lg hover:shadow-[0_0_15px_rgba(107,155,209,0.6)] group/btn touch-manipulation"
+      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-2 sm:p-2.5 bg-[#3A3A3C]/80 hover:bg-[#1D1D1F] text-white rounded-full backdrop-blur-md transition-all border border-[#A1A1A6]/30 hover:border-[#F5F5F7]/50 z-20 shadow-lg hover:shadow-[0_0_15px_rgba(245,245,247,0.3)] group/btn touch-manipulation"
       style={{ minWidth: '44px', minHeight: '44px' }}
       title="Share"
       aria-label="Share this service"
     >
-      {copied ? <Check className="w-4 h-4 text-[#6b9bd1] drop-shadow-[0_0_8px_rgba(107,155,209,0.6)] group-hover/btn:text-white" /> : <Share2 className="w-4 h-4 opacity-70 group-hover/btn:opacity-100" />}
+      {copied ? <Check className="w-4 h-4 text-[#F5F5F7] drop-shadow-[0_0_8px_rgba(245,245,247,0.6)] group-hover/btn:text-white" /> : <Share2 className="w-4 h-4 opacity-70 group-hover/btn:opacity-100" />}
     </button>
   );
 };
-
-const BackgroundGlows = () => {
-    return (
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-20">
-            {/* FLUID FIX: Use max() to prevent overflow on small screens */}
-            <div className="absolute top-[-10%] right-[-5%] bg-[#1a2942] rounded-full blur-[180px]" 
-                 style={{ width: 'min(900px, 160vw)', height: 'min(900px, 160vw)' }} />
-            <div className="absolute bottom-[-10%] left-[-10%] bg-[#2d4a7c] rounded-full blur-[180px]" 
-                 style={{ width: 'min(1000px, 180vw)', height: 'min(1000px, 180vw)' }} />
-            <div className="absolute top-[30%] left-[40%] bg-[#0d1420] rounded-full blur-[180px]" 
-                 style={{ width: 'min(700px, 140vw)', height: 'min(700px, 140vw)' }} />
-            <div className="absolute top-[50%] right-[20%] bg-[#4a6fa5] rounded-full blur-[200px] opacity-40" 
-                 style={{ width: 'min(600px, 120vw)', height: 'min(600px, 120vw)' }} />
-        </div>
-    )
-}
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -267,53 +251,78 @@ export default function App() {
   const filteredItems = activeCategory === 'All' ? CATALOG_ITEMS : CATALOG_ITEMS.filter((item) => item.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#050810] bg-grid font-sans relative flex flex-col overflow-x-hidden">
-      <BackgroundGlows />
+    <div className="min-h-screen bg-grid font-sans relative flex flex-col overflow-x-hidden">
+      {/* Background glows removed - using body background for consistency */}
 
-      {/* Nav - Enhanced Mobile Responsiveness */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] glass-subtle backdrop-blur-[25px]" 
-           style={{ 
-             padding: 'clamp(0.75rem, 3vw, 1.5rem) clamp(1rem, 4vw, 2rem)',
-             paddingTop: 'max(0.75rem, env(safe-area-inset-top))'
-           }}>
-        <div className="flex justify-between items-center max-w-[90rem] mx-auto">
+      {/* Sticky Header - Transparent with Grid */}
+      <header className="sticky top-0 left-0 right-0 z-[100] bg-grid" 
+              style={{ 
+                background: 'transparent'
+              }}>
+        <nav className="flex justify-between items-center max-w-[90rem] mx-auto" 
+             style={{ 
+               padding: 'clamp(0.75rem, 3vw, 1.5rem) clamp(1rem, 4vw, 2rem)',
+               paddingTop: 'max(0.75rem, env(safe-area-inset-top))'
+             }}>
+          {/* Logo Section */}
           <div className="logo-container group cursor-pointer">
             <img 
               src={logoImage} 
-              alt="Enzo OS" 
+              alt="Ezon" 
               className="w-auto object-contain group-hover:scale-110 transition-transform duration-300"
-              style={{ height: 'clamp(3.5rem, 8vw, 4.5rem)' }}
+              style={{ height: 'clamp(4.5rem, 10vw, 6rem)' }}
             />
           </div>
+          
+          {/* Access Platform Button */}
           <div className="flex items-center gap-2 sm:gap-4">
-            <button 
-              className="glass-pill flex items-center justify-center gap-1 sm:gap-2 group hover:bg-white/10 transition-all touch-manipulation" 
+            <a 
+              href="https://t.me/Ezonstorebot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full flex items-center justify-center gap-1 sm:gap-2 group transition-all touch-manipulation backdrop-blur-[20px] border" 
               style={{ 
                 padding: 'clamp(0.625rem, 1.5vw, 0.75rem) clamp(0.875rem, 2.5vw, 1.5rem)',
                 fontSize: 'clamp(0.6875rem, 1.6vw, 0.875rem)',
                 minHeight: '44px',
-                minWidth: '44px'
+                minWidth: '44px',
+                background: 'linear-gradient(135deg, rgba(58,58,60,0.9) 0%, rgba(29,29,31,0.8) 50%, rgba(58,58,60,0.85) 100%)',
+                color: '#FFFFFF',
+                borderColor: 'rgba(161,161,166,0.4)',
+                boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 8px rgba(29,29,31,0.15)'
               }}
-              aria-label="Access Platform"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(29,29,31,0.95) 0%, rgba(58,58,60,0.9) 50%, rgba(29,29,31,0.92) 100%)';
+                e.currentTarget.style.boxShadow = 'inset 0 1px 2px rgba(255,255,255,0.3), 0 4px 16px rgba(29,29,31,0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(58,58,60,0.9) 0%, rgba(29,29,31,0.8) 50%, rgba(58,58,60,0.85) 100%)';
+                e.currentTarget.style.boxShadow = 'inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 8px rgba(29,29,31,0.15)';
+              }}
+              aria-label="Access Platform via Bot"
             >
               <span className="hidden xs:inline">Access Platform</span>
               <span className="inline xs:hidden">Access</span>
-              <ArrowRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all flex-shrink-0" 
-                          style={{ width: 'clamp(0.875rem, 2vw, 1rem)', height: 'clamp(0.875rem, 2vw, 1rem)' }} />
-            </button>
+              <ArrowRight className="opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all flex-shrink-0" 
+                          style={{ 
+                            width: 'clamp(0.875rem, 2vw, 1rem)', 
+                            height: 'clamp(0.875rem, 2vw, 1rem)',
+                            color: '#FFFFFF'
+                          }} />
+            </a>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
-      {/* RESPONSIVE HERO - Optimized for all devices */}
-      <section className="relative w-full h-screen z-20 overflow-hidden" style={{ minHeight: '100svh' }}>
+      {/* RESPONSIVE HERO - Optimized for all devices with Grid Background */}
+      <section className="relative w-full h-screen z-20 overflow-hidden bg-grid" style={{ minHeight: '100svh' }}>
         <WaitlistHero />
       </section>
 
-      {/* THE DASHBOARD */}
+      {/* THE DASHBOARD with Grid Background */}
       <section 
         id="service-catalog"
-        className="relative z-30 w-full" 
+        className="relative z-30 w-full bg-grid" 
         style={{ 
           minHeight: '100vh',
           padding: 'clamp(2rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem) clamp(3rem, 12vw, 12rem)',
@@ -333,15 +342,17 @@ export default function App() {
             <h2 className="font-semibold tracking-tighter" 
                 style={{ 
                   fontSize: 'clamp(2rem, 5vw, 3rem)',
-                  marginBottom: 'clamp(0.75rem, 2vw, 1rem)'
+                  marginBottom: 'clamp(0.75rem, 2vw, 1rem)',
+                  color: '#000000' // Pure black for maximum contrast
                 }}>
               Service Catalog
             </h2>
-            <p className="text-slate-400 font-mono" 
+            <p className="font-mono" 
                style={{ 
                  maxWidth: 'min(28rem, 90vw)',
                  fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
-                 lineHeight: '1.6'
+                 lineHeight: '1.6',
+                 color: '#000000' // Pure black for better readability
                }}>
               Browse our encrypted service roster. Select a category below to filter targeted resources. All requests route to our secure deployment bot.
             </p>
@@ -360,12 +371,16 @@ export default function App() {
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`glass-pill font-mono uppercase tracking-wider transition-all whitespace-nowrap border flex-shrink-0 snap-start touch-manipulation ${
-                activeCategory === cat ? 'bg-[#4a6fa5] text-white font-bold border-[#6b9bd1]/50 shadow-[0_0_20px_rgba(107,155,209,0.6)]' : 'border-transparent text-slate-400 hover:text-white hover:bg-[#2d4a7c]/20'
+                activeCategory === cat ? 'font-bold shadow-[0_0_20px_rgba(58,58,60,0.3)]' : 'border-transparent'
               }`}
-              style={{ 
+              style={{
+                backgroundColor: activeCategory === cat ? '#3A3A3C' : 'rgba(245,245,247,0.9)',
+                borderColor: activeCategory === cat ? '#1D1D1F' : 'rgba(161,161,166,0.4)',
+                color: activeCategory === cat ? '#FFFFFF' : '#000000', // Black text for inactive, white for active
                 padding: 'clamp(0.625rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.25rem)',
                 fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)',
-                minHeight: '44px'
+                minHeight: '44px',
+                fontWeight: activeCategory === cat ? 'bold' : '600' // Ensure readability
               }}
               aria-pressed={activeCategory === cat}
               aria-label={`Filter by ${cat}`}
@@ -427,9 +442,9 @@ export default function App() {
                    // CLS FIX: Explicit dimensions
                    width="600"
                    height="400"
-                   className="w-full h-full object-cover opacity-80 md:opacity-60 md:group-hover:opacity-100 transition-opacity duration-500 md:group-hover:scale-105 md:grayscale md:group-hover:grayscale-0"
+                   className="w-full h-full object-cover opacity-90 transition-opacity duration-500 md:group-hover:scale-105"
                    style={{ 
-                     transition: 'opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease',
+                     transition: 'opacity 0.5s ease, transform 0.5s ease',
                      willChange: 'auto'
                    }}
                  />
@@ -450,15 +465,19 @@ export default function App() {
                        marginBottom: 'clamp(1rem, 2.5vw, 1.25rem)'
                      }}>
                   <div className="flex items-center justify-between" style={{ marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-                     <h3 className="font-medium tracking-tight text-white line-clamp-1" 
-                         style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)' }}>
+                     <h3 className="font-medium tracking-tight line-clamp-1" 
+                         style={{ 
+                           fontSize: 'clamp(1.25rem, 3vw, 1.5rem)',
+                           color: '#000000' // Pure black for card titles
+                         }}>
                        {item.name}
                      </h3>
                   </div>
-                  <p className="font-mono text-slate-400" 
+                  <p className="font-mono" 
                      style={{ 
                        fontSize: 'clamp(0.625rem, 1.5vw, 0.6875rem)',
-                       lineHeight: '1.6'
+                       lineHeight: '1.6',
+                       color: '#000000' // Pure black for descriptions
                      }}>
                     {item.desc}
                   </p>
@@ -471,25 +490,27 @@ export default function App() {
                          gap: 'clamp(0.75rem, 2vw, 0.875rem)',
                          marginBottom: 'clamp(1.5rem, 3vw, 2rem)'
                        }}>
-                    <p className="font-mono text-slate-500 uppercase tracking-widest" 
+                    <p className="font-mono uppercase tracking-widest" 
                        style={{ 
                          fontSize: 'clamp(0.5625rem, 1.2vw, 0.625rem)',
-                         marginBottom: 'clamp(0.25rem, 0.5vw, 0.5rem)'
+                         marginBottom: 'clamp(0.25rem, 0.5vw, 0.5rem)',
+                         color: '#3A3A3C' // Space Gray for labels - still readable but hierarchical
                        }}>
                       Included
                     </p>
                     {item.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start" style={{ gap: 'clamp(0.5rem, 1.5vw, 0.75rem)' }}>
-                        <Check className="text-[#6b9bd1] shrink-0 drop-shadow-[0_0_8px_rgba(107,155,209,0.6)]" 
+                        <Check className="text-[#3A3A3C] shrink-0 drop-shadow-[0_0_8px_rgba(58,58,60,0.6)]" 
                                style={{ 
                                  width: 'clamp(0.875rem, 2vw, 1rem)',
                                  height: 'clamp(0.875rem, 2vw, 1rem)',
                                  marginTop: '0.125rem'
                                }} />
-                        <span className="font-mono text-slate-300" 
+                        <span className="font-mono" 
                               style={{ 
                                 fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
-                                lineHeight: '1.4'
+                                lineHeight: '1.4',
+                                color: '#000000' // Pure black for feature text
                               }}>
                           {feat}
                         </span>
@@ -503,15 +524,32 @@ export default function App() {
                       href={item.botLink}
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-full relative z-10 glass-pill bg-[#4a6fa5] text-white font-mono font-bold flex items-center justify-center gap-2 hover:bg-[#6b9bd1] hover:text-white transition-all uppercase tracking-widest text-center shadow-[0_0_20px_rgba(74,111,165,0.5)] hover:shadow-[0_0_30px_rgba(107,155,209,0.7)] hover:border-[#6b9bd1]/60 touch-manipulation active:scale-95"
+                      className="w-full relative z-10 glass-pill font-mono font-bold flex items-center justify-center gap-2 transition-all uppercase tracking-widest text-center touch-manipulation active:scale-95"
                       style={{ 
                         padding: 'clamp(0.875rem, 2vw, 1rem)',
                         fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)',
-                        minHeight: '48px'
+                        minHeight: '48px',
+                        backgroundColor: '#F5F5F7', // Platinum light background for contrast with black text
+                        color: '#000000', // Pure black text as requested
+                        boxShadow: '0 0 20px rgba(245,245,247,0.4), inset 0 1px 2px rgba(255,255,255,0.8)',
+                        borderColor: '#A1A1A6',
+                        border: '2px solid #A1A1A6'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#E2E2E2';
+                        e.currentTarget.style.color = '#000000';
+                        e.currentTarget.style.boxShadow = '0 0 30px rgba(226,226,226,0.6), inset 0 1px 2px rgba(255,255,255,0.9)';
+                        e.currentTarget.style.borderColor = '#3A3A3C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#F5F5F7';
+                        e.currentTarget.style.color = '#000000';
+                        e.currentTarget.style.boxShadow = '0 0 20px rgba(245,245,247,0.4), inset 0 1px 2px rgba(255,255,255,0.8)';
+                        e.currentTarget.style.borderColor = '#A1A1A6';
                       }}
                       aria-label={`Request ${item.name} via Bot`}
                     >
-                      <Bot className="shrink-0" style={{ width: 'clamp(1rem, 2vw, 1.125rem)', height: 'clamp(1rem, 2vw, 1.125rem)' }} /> 
+                      <Bot className="shrink-0" style={{ width: 'clamp(1rem, 2vw, 1.125rem)', height: 'clamp(1rem, 2vw, 1.125rem)', color: '#000000' }} /> 
                       <span className="hidden xs:inline">Request via Bot</span>
                       <span className="inline xs:hidden">Request</span>
                     </a>
@@ -532,35 +570,40 @@ export default function App() {
               borderRadius: 'clamp(1.5rem, 4vw, 2rem)'
             }}
         >
-            <div className="absolute top-0 right-0 bg-[#4a6fa5] rounded-full blur-[120px] opacity-20 pointer-events-none" 
+            <div className="absolute top-0 right-0 bg-[#A1A1A6] rounded-full blur-[120px] opacity-20 pointer-events-none" 
                  style={{ width: 'min(18rem, 45vw)', height: 'min(18rem, 45vw)' }} />
             
             <div className="relative z-10 text-center md:text-left" style={{ maxWidth: 'min(32rem, 90vw)' }}>
-               <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#4a6fa5] to-[#6b9bd1] mb-4 mx-auto md:mx-0 shadow-[0_0_30px_rgba(107,155,209,0.4)]">
-                 <svg className="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                 </svg>
+               <div className="inline-flex items-center justify-center mb-4 mx-auto md:mx-0">
+                 <img 
+                   src={logoImage} 
+                   alt="Ezon Logo" 
+                   className="w-auto object-contain drop-shadow-[0_0_20px_rgba(58,58,60,0.4)]"
+                   style={{ height: 'clamp(3rem, 6vw, 4rem)' }}
+                 />
                </div>
                
                <h3 className="font-semibold tracking-tighter mb-3" 
                    style={{ 
-                     fontSize: 'clamp(1.25rem, 3.5vw, 1.875rem)'
+                     fontSize: 'clamp(1.25rem, 3.5vw, 1.875rem)',
+                     color: '#000000'
                    }}>
                  About Us
                </h3>
                
-               <p className="text-slate-400 mb-4" 
+               <p className="mb-4" 
                   style={{ 
                     fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
-                    lineHeight: '1.6'
+                    lineHeight: '1.6',
+                    color: '#000000' // Pure black for better readability
                   }}>
-                 Enzo Digital is your trusted partner for premium digital subscriptions and services. We provide instant access to top-tier streaming platforms, productivity tools, and gaming services at competitive prices.
+                 Ezon is your trusted partner for premium digital subscriptions and services. We provide instant access to top-tier streaming platforms, productivity tools, and gaming services at competitive prices.
                </p>
                
-               <p className="text-slate-400" 
-                  style={{ 
+               <p style={{ 
                     fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
-                    lineHeight: '1.6'
+                    lineHeight: '1.6',
+                    color: '#000000'
                   }}>
                  Our mission is to make premium digital services accessible to everyone through secure, fast, and reliable delivery. With 24/7 customer support and a commitment to excellence, we ensure your digital lifestyle is always enhanced.
                </p>
@@ -569,7 +612,27 @@ export default function App() {
             <a href="https://t.me/enzostoreowner" 
                target="_blank" 
                rel="noopener noreferrer" 
-               className="relative z-10 pulse-glow glass-pill bg-[#050810]/50 text-white font-medium flex items-center justify-center gap-2 sm:gap-3 hover:bg-[#4a6fa5] hover:border-[#6b9bd1]/50 hover:shadow-[0_0_30px_rgba(107,155,209,0.6)] transition-all border-[#4a6fa5]/25 w-full md:w-auto touch-manipulation active:scale-95"
+               className="relative z-10 pulse-glow glass-pill font-medium flex items-center justify-center gap-2 sm:gap-3 transition-all w-full md:w-auto touch-manipulation active:scale-95"
+               style={{ 
+                 padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
+                 minHeight: '48px',
+                 backgroundColor: '#A1A1A6', // Lighter Silver Mid
+                 color: '#000000', // Pure black for contrast
+                 borderColor: 'rgba(226,226,226,0.6)',
+                 boxShadow: '0 0 20px rgba(161,161,166,0.3)'
+               }}
+               onMouseEnter={(e) => {
+                 e.currentTarget.style.backgroundColor = '#3A3A3C';
+                 e.currentTarget.style.color = '#FFFFFF';
+                 e.currentTarget.style.borderColor = 'rgba(245,245,247,0.8)';
+                 e.currentTarget.style.boxShadow = '0 0 30px rgba(58,58,60,0.5)';
+               }}
+               onMouseLeave={(e) => {
+                 e.currentTarget.style.backgroundColor = '#A1A1A6';
+                 e.currentTarget.style.color = '#000000';
+                 e.currentTarget.style.borderColor = 'rgba(226,226,226,0.6)';
+                 e.currentTarget.style.boxShadow = '0 0 20px rgba(161,161,166,0.3)';
+               }}
                style={{ 
                  padding: 'clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem)',
                  minHeight: '48px'
@@ -585,13 +648,16 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[#4a6fa5]/15 text-center relative z-20 overflow-hidden font-mono text-slate-500 uppercase tracking-widest bg-[#050810]" 
+      <footer className="text-center relative z-20 overflow-hidden font-mono uppercase tracking-widest bg-grid" 
               style={{ 
                 padding: 'clamp(1.5rem, 3vw, 2rem)',
                 paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))',
-                fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)'
+                fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)',
+                borderTop: '1px solid rgba(161,161,166,0.3)',
+                backgroundColor: 'transparent',
+                color: '#3A3A3C'
               }}>
-         &copy; {new Date().getFullYear()} Enzo Systems. Sector 04 / Nexus. All Rights Reserved.
+         &copy; {new Date().getFullYear()} Ezon. Sector 04 / Nexus. All Rights Reserved.
       </footer>
     </div>
   );
