@@ -357,18 +357,27 @@ export const WaitlistHero = () => {
 
         {/* Content Container - Bottom Left Positioning */}
         <div className="relative z-20 w-full h-full flex items-end justify-start p-6 md:p-8 pb-12 md:pb-16 safe-area-bottom">
-          {/* Welcome Text - Bottom Left Position with ADEPT Typography Hierarchy */}
+          {/* Welcome Text - Bottom Left Position with Ultra Transparent Glass */}
           <div className="text-left max-w-md lg:max-w-lg">
-            <div className="glass-module rounded-xl md:rounded-2xl p-5 md:p-6 animate-fade-in">
+            <div 
+              className="rounded-xl md:rounded-2xl p-5 md:p-6 animate-fade-in border"
+              style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                backdropFilter: 'blur(50px) saturate(200%)',
+                WebkitBackdropFilter: 'blur(50px) saturate(200%)',
+                borderColor: 'rgba(255, 255, 255, 0.5)',
+                boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.9), 0 8px 32px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,0.6)'
+              }}
+            >
               <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight mb-3 md:mb-4 animate-slide-up">
-                <span className="block" style={{ color: '#000000' }}>Welcome to</span>
+                <span className="block" style={{ color: '#000000' }}>All Premium Services.</span>
                 <span 
                   className="animate-glow block bg-clip-text text-transparent"
                   style={{
                     backgroundImage: 'linear-gradient(135deg, #3A3A3C 0%, #1D1D1F 50%, #3A3A3C 100%)',
                   }}
                 >
-                  Ezon
+                  One Place.
                 </span>
               </h1>
               
