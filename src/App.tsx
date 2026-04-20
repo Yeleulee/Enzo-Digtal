@@ -24,7 +24,7 @@ const CATALOG_ITEMS = [
     features: ['1 Month', '3 Months', '6 Months'], 
     image: '/src/assets/netfllx.jpg',
     imageSrcSet: '/src/assets/netfllx.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'ENT_02', 
@@ -34,7 +34,7 @@ const CATALOG_ITEMS = [
     features: ['3 Months', '6 Months', '1 Year'], 
     image: '/src/assets/Spotify.jpg',
     imageSrcSet: '/src/assets/Spotify.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'ENT_03', 
@@ -44,7 +44,7 @@ const CATALOG_ITEMS = [
     features: ['1 Year', 'Music Included', 'Offline Downloads'], 
     image: '/src/assets/Prime.jpg',
     imageSrcSet: '/src/assets/Prime.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   
   // Social & Communication
@@ -56,7 +56,7 @@ const CATALOG_ITEMS = [
     features: ['3 Months', '6 Months', '1 Year'], 
     image: '/src/assets/Telegram.png',
     imageSrcSet: '/src/assets/Telegram.png',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'SOC_02', 
@@ -66,7 +66,7 @@ const CATALOG_ITEMS = [
     features: ['3 Months', '6 Months', '1 Year'], 
     image: '/src/assets/Snapchat.jpg',
     imageSrcSet: '/src/assets/Snapchat.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   
   // Gaming
@@ -78,7 +78,7 @@ const CATALOG_ITEMS = [
     features: ['$25 Cards', '$50 Cards', '$100 Cards'], 
     image: '/src/assets/playstation.jpg', // Perfect match!
     imageSrcSet: '/src/assets/playstation.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'GAM_02', 
@@ -88,7 +88,7 @@ const CATALOG_ITEMS = [
     features: ['Battle Pass', 'Premium Content', 'Exclusive Access'], 
     image: '/src/assets/call of duty.jpg', // Perfect match!
     imageSrcSet: '/src/assets/call of duty.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'GAM_03', 
@@ -98,7 +98,7 @@ const CATALOG_ITEMS = [
     features: ['UC Credits', 'Battle Pass', 'Exclusive Skins'], 
     image: '/src/assets/pubg.jpg', // Perfect match!
     imageSrcSet: '/src/assets/pubg.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   
   // Gift Cards
@@ -110,7 +110,7 @@ const CATALOG_ITEMS = [
     features: ['$10 - $200', 'Instant Delivery', 'Global Valid'], 
     image: '/src/assets/appel.jpg', // Perfect match!
     imageSrcSet: '/src/assets/appel.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'GIF_02', 
@@ -120,7 +120,7 @@ const CATALOG_ITEMS = [
     features: ['$10 - $200', 'Instant Delivery', 'Multiple Regions'], 
     image: '/src/assets/googel play gift cards.jpg', // Perfect match!
     imageSrcSet: '/src/assets/googel play gift cards.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   
   // Productivity & AI
@@ -132,7 +132,7 @@ const CATALOG_ITEMS = [
     features: ['1 Month', '3 Months', 'Priority Access'], 
     image: '/src/assets/Chatgpt.jpg',
     imageSrcSet: '/src/assets/Chatgpt.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'PRO_02', 
@@ -142,7 +142,7 @@ const CATALOG_ITEMS = [
     features: ['Monthly Plans', 'Advanced AI', 'Google Integration'], 
     image: '/src/assets/Gemini.jpg',
     imageSrcSet: '/src/assets/Gemini.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'PRO_03', 
@@ -152,7 +152,7 @@ const CATALOG_ITEMS = [
     features: ['Monthly Access', 'Real-time Data', 'X Integration'], 
     image: '/src/assets/Grock.jpg',
     imageSrcSet: '/src/assets/Grock.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'PRO_04', 
@@ -162,7 +162,7 @@ const CATALOG_ITEMS = [
     features: ['Monthly Plans', 'Grammar Check', 'Writing Enhancement'], 
     image: '/src/assets/gramarilly.jpg',
     imageSrcSet: '/src/assets/gramarilly.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'PRO_05', 
@@ -172,7 +172,7 @@ const CATALOG_ITEMS = [
     features: ['Pro Features', 'Advanced Charts', 'Real-time Data'], 
     image: '/src/assets/TradingView%20Pro.jpg',
     imageSrcSet: '/src/assets/TradingView%20Pro.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
     id: 'PRO_06', 
@@ -182,7 +182,7 @@ const CATALOG_ITEMS = [
     features: ['Global Servers', 'No Logs Policy', 'Fast Connection'], 
     image: '/src/assets/nord%20vpn.jpg',
     imageSrcSet: '/src/assets/nord%20vpn.jpg',
-    botLink: 'https://t.me/enzo_agency_bot' 
+    botLink: 'https://t.me/Ezonstorebot' 
   },
 ];
 
@@ -531,7 +531,7 @@ export default function App() {
                </p>
             </div>
 
-            <a href="https://t.me/enzo_agency_bot" 
+            <a href="https://t.me/Ezonstorebot" 
                target="_blank" 
                rel="noopener noreferrer" 
                className="relative z-10 pulse-glow glass-pill bg-[#050810]/50 text-white font-medium flex items-center justify-center gap-2 sm:gap-3 hover:bg-[#4a6fa5] hover:border-[#6b9bd1]/50 hover:shadow-[0_0_30px_rgba(107,155,209,0.6)] transition-all border-[#4a6fa5]/25 w-full md:w-auto touch-manipulation active:scale-95"
