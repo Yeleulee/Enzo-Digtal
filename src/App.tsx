@@ -14,6 +14,25 @@ import {
 } from 'lucide-react';
 import { WaitlistHero } from './components/ui/waitlist-hero';
 
+// Import all images
+import logoImage from './assets/logo.png';
+import netflixImg from './assets/netfllx.jpg';
+import spotifyImg from './assets/Spotify.jpg';
+import primeImg from './assets/Prime.jpg';
+import telegramImg from './assets/Telegram.png';
+import snapchatImg from './assets/Snapchat.jpg';
+import playstationImg from './assets/playstation.jpg';
+import codImg from './assets/call of duty.jpg';
+import pubgImg from './assets/pubg.jpg';
+import appleImg from './assets/appel.jpg';
+import googlePlayImg from './assets/googel play gift cards.jpg';
+import chatgptImg from './assets/Chatgpt.jpg';
+import geminiImg from './assets/Gemini.jpg';
+import grokImg from './assets/Grock.jpg';
+import grammarlyImg from './assets/gramarilly.jpg';
+import tradingViewImg from './assets/TradingView Pro.jpg';
+import nordVpnImg from './assets/nord vpn.jpg';
+
 const CATALOG_ITEMS = [
   // Entertainment - Streaming
   { 
@@ -22,8 +41,8 @@ const CATALOG_ITEMS = [
     category: 'Entertainment', 
     desc: '4K Ultra HD streaming access.', 
     features: ['1 Month', '3 Months', '6 Months'], 
-    image: '/src/assets/netfllx.jpg',
-    imageSrcSet: '/src/assets/netfllx.jpg',
+    image: netflixImg,
+    imageSrcSet: netflixImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -32,8 +51,8 @@ const CATALOG_ITEMS = [
     category: 'Entertainment', 
     desc: 'Ad-free high-fidelity audio.', 
     features: ['3 Months', '6 Months', '1 Year'], 
-    image: '/src/assets/Spotify.jpg',
-    imageSrcSet: '/src/assets/Spotify.jpg',
+    image: spotifyImg,
+    imageSrcSet: spotifyImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -42,8 +61,8 @@ const CATALOG_ITEMS = [
     category: 'Entertainment', 
     desc: 'Ad-free videos & background play.', 
     features: ['1 Year', 'Music Included', 'Offline Downloads'], 
-    image: '/src/assets/Prime.jpg',
-    imageSrcSet: '/src/assets/Prime.jpg',
+    image: primeImg,
+    imageSrcSet: primeImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   
@@ -54,8 +73,8 @@ const CATALOG_ITEMS = [
     category: 'Social', 
     desc: 'Enhanced messaging features.', 
     features: ['3 Months', '6 Months', '1 Year'], 
-    image: '/src/assets/Telegram.png',
-    imageSrcSet: '/src/assets/Telegram.png',
+    image: telegramImg,
+    imageSrcSet: telegramImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -64,8 +83,8 @@ const CATALOG_ITEMS = [
     category: 'Social', 
     desc: 'Advanced filters & features.', 
     features: ['3 Months', '6 Months', '1 Year'], 
-    image: '/src/assets/Snapchat.jpg',
-    imageSrcSet: '/src/assets/Snapchat.jpg',
+    image: snapchatImg,
+    imageSrcSet: snapchatImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   
@@ -76,8 +95,8 @@ const CATALOG_ITEMS = [
     category: 'Gaming', 
     desc: 'Digital wallet top-up for PlayStation.', 
     features: ['$25 Cards', '$50 Cards', '$100 Cards'], 
-    image: '/src/assets/playstation.jpg', // Perfect match!
-    imageSrcSet: '/src/assets/playstation.jpg',
+    image: playstationImg,
+    imageSrcSet: playstationImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -86,8 +105,8 @@ const CATALOG_ITEMS = [
     category: 'Gaming', 
     desc: 'Premium gaming experience.', 
     features: ['Battle Pass', 'Premium Content', 'Exclusive Access'], 
-    image: '/src/assets/call of duty.jpg', // Perfect match!
-    imageSrcSet: '/src/assets/call of duty.jpg',
+    image: codImg,
+    imageSrcSet: codImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -96,8 +115,8 @@ const CATALOG_ITEMS = [
     category: 'Gaming', 
     desc: 'Mobile gaming premium features.', 
     features: ['UC Credits', 'Battle Pass', 'Exclusive Skins'], 
-    image: '/src/assets/pubg.jpg', // Perfect match!
-    imageSrcSet: '/src/assets/pubg.jpg',
+    image: pubgImg,
+    imageSrcSet: pubgImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   
@@ -108,8 +127,8 @@ const CATALOG_ITEMS = [
     category: 'Gift Cards', 
     desc: 'App Store & iTunes credit.', 
     features: ['$10 - $200', 'Instant Delivery', 'Global Valid'], 
-    image: '/src/assets/appel.jpg', // Perfect match!
-    imageSrcSet: '/src/assets/appel.jpg',
+    image: appleImg,
+    imageSrcSet: appleImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -118,8 +137,8 @@ const CATALOG_ITEMS = [
     category: 'Gift Cards', 
     desc: 'Play Store & Google services credit.', 
     features: ['$10 - $200', 'Instant Delivery', 'Multiple Regions'], 
-    image: '/src/assets/googel play gift cards.jpg', // Perfect match!
-    imageSrcSet: '/src/assets/googel play gift cards.jpg',
+    image: googlePlayImg,
+    imageSrcSet: googlePlayImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   
@@ -130,8 +149,8 @@ const CATALOG_ITEMS = [
     category: 'Productivity', 
     desc: 'Advanced AI assistant access.', 
     features: ['1 Month', '3 Months', 'Priority Access'], 
-    image: '/src/assets/Chatgpt.jpg',
-    imageSrcSet: '/src/assets/Chatgpt.jpg',
+    image: chatgptImg,
+    imageSrcSet: chatgptImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -140,8 +159,8 @@ const CATALOG_ITEMS = [
     category: 'Productivity', 
     desc: 'Advanced AI by Google.', 
     features: ['Monthly Plans', 'Advanced AI', 'Google Integration'], 
-    image: '/src/assets/Gemini.jpg',
-    imageSrcSet: '/src/assets/Gemini.jpg',
+    image: geminiImg,
+    imageSrcSet: geminiImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -150,8 +169,8 @@ const CATALOG_ITEMS = [
     category: 'Productivity', 
     desc: 'AI assistant by X (Twitter).', 
     features: ['Monthly Access', 'Real-time Data', 'X Integration'], 
-    image: '/src/assets/Grock.jpg',
-    imageSrcSet: '/src/assets/Grock.jpg',
+    image: grokImg,
+    imageSrcSet: grokImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -160,8 +179,8 @@ const CATALOG_ITEMS = [
     category: 'Productivity', 
     desc: 'Advanced writing assistant.', 
     features: ['Monthly Plans', 'Grammar Check', 'Writing Enhancement'], 
-    image: '/src/assets/gramarilly.jpg',
-    imageSrcSet: '/src/assets/gramarilly.jpg',
+    image: grammarlyImg,
+    imageSrcSet: grammarlyImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -170,8 +189,8 @@ const CATALOG_ITEMS = [
     category: 'Productivity', 
     desc: 'Advanced trading charts & analysis.', 
     features: ['Pro Features', 'Advanced Charts', 'Real-time Data'], 
-    image: '/src/assets/TradingView%20Pro.jpg',
-    imageSrcSet: '/src/assets/TradingView%20Pro.jpg',
+    image: tradingViewImg,
+    imageSrcSet: tradingViewImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   { 
@@ -180,8 +199,8 @@ const CATALOG_ITEMS = [
     category: 'Productivity', 
     desc: 'Secure VPN connection worldwide.', 
     features: ['Global Servers', 'No Logs Policy', 'Fast Connection'], 
-    image: '/src/assets/nord%20vpn.jpg',
-    imageSrcSet: '/src/assets/nord%20vpn.jpg',
+    image: nordVpnImg,
+    imageSrcSet: nordVpnImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
 ];
@@ -260,7 +279,7 @@ export default function App() {
         <div className="flex justify-between items-center max-w-[90rem] mx-auto">
           <div className="logo-container group cursor-pointer">
             <img 
-              src="/src/assets/logo.png" 
+              src={logoImage} 
               alt="Enzo OS" 
               className="w-auto object-contain group-hover:scale-110 transition-transform duration-300"
               style={{ height: 'clamp(2.5rem, 5vw, 4rem)' }}

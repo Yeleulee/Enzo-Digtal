@@ -58,7 +58,7 @@ export const WaitlistHero = () => {
             </a>
             
             <a 
-              href="https://t.me/enzo_agency_bot"
+              href="https://t.me/Ezonstorebot"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full glass-pill bg-white/5 hover:bg-white/10 text-white font-medium flex items-center justify-center gap-2 transition-all border border-[#4a6fa5]/30 hover:border-[#6b9bd1]/50 active:scale-95 touch-manipulation"

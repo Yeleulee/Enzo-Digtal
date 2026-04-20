@@ -108,7 +108,7 @@ export const CTAHero = () => {
           </motion.button>
           
           <motion.a
-            href="https://t.me/enzo_agency_bot"
+            href="https://t.me/Ezonstorebot"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
