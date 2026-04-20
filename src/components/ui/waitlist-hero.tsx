@@ -382,7 +382,7 @@ export const WaitlistHero = () => {
               </h1>
               
               <p className="text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-md animate-fade-in-delay" style={{ color: '#000000' }}>
-                Ezon's advancements in premium subscriptions accelerate your digital lifestyle with proven results.
+                Premium subscriptions and digital services delivered instantly through our secure platform.
               </p>
             </div>
           </div>
