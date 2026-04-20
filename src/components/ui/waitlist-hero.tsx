@@ -3,16 +3,103 @@
 export const WaitlistHero = () => {
   return (
     <div className="w-full h-full bg-grid flex items-center justify-center relative overflow-hidden" style={{ minHeight: '100svh' }}>
-      {/* MOBILE: Professional, Clean Design - Space Gray Theme */}
+      {/* MOBILE: Professional, Clean Design with Spinning Animation */}
       <div className="block md:hidden w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden">
+        {/* Spinning images - More visible for mobile */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+          <div className="absolute inset-0 opacity-95" style={{
+            perspective: "1000px",
+            transform: "perspective(1000px) rotateX(12deg)",
+            transformOrigin: "center center",
+          }}>
+            {/* Two spinning layers for more visible effect */}
+            <div className="absolute inset-0 animate-spin-slow">
+              <div
+                className="absolute top-1/2 left-1/2"
+                style={{
+                  width: "800px",
+                  height: "800px",
+                  transform: "translate(-50%, -50%) rotate(48.33deg)",
+                  zIndex: 1,
+                }}
+              >
+                <img
+                  src="https://framerusercontent.com/images/Ans5PAxtJfg3CwxlrPMSshx2Pqc.png"
+                  alt=""
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                  style={{ 
+                    filter: 'drop-shadow(0 0 30px rgba(58,58,60,0.6)) saturate(1.4) contrast(1.2) brightness(1.1)',
+                    transform: 'scale(1.1)',
+                    willChange: 'transform'
+                  }}
+                />
+              </div>
+            </div>
+            
+            {/* Second layer spinning opposite direction */}
+            <div className="absolute inset-0 animate-spin-slow-reverse">
+              <div
+                className="absolute top-1/2 left-1/2"
+                style={{
+                  width: "500px",
+                  height: "500px",
+                  transform: "translate(-50%, -50%) rotate(120deg)",
+                  zIndex: 0,
+                }}
+              >
+                <img
+                  src="https://framerusercontent.com/images/UbucGYsHDAUHfaGZNjwyCzViw8.png?scale-down-to=1024"
+                  alt=""
+                  className="w-full h-full object-cover opacity-85"
+                  loading="eager"
+                  style={{ 
+                    filter: 'drop-shadow(0 0 25px rgba(58,58,60,0.5)) saturate(1.3) contrast(1.15)',
+                    transform: 'scale(1.08)',
+                    willChange: 'transform'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Animation Styles for Mobile */}
+        <style>{`
+          @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          .animate-spin-slow {
+            animation: spin-slow 50s linear infinite;
+          }
+          
+          @keyframes spin-slow-reverse {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+          }
+          .animate-spin-slow-reverse {
+            animation: spin-slow-reverse 50s linear infinite;
+          }
+        `}</style>
+
         {/* Main Content - Centered Professional Layout */}
         <div className="relative z-10 w-full max-w-md mx-auto px-4 flex flex-col items-center justify-center text-center space-y-8">
           {/* Logo/Brand Section */}
           <div className="space-y-4">
-            {/* Headline with Glass Module Background */}
-            <div className="glass-module rounded-2xl p-6">
+            {/* Headline with Ultra Transparent Glass */}
+            <div 
+              className="rounded-2xl p-6 border"
+              style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                backdropFilter: 'blur(50px) saturate(200%)',
+                WebkitBackdropFilter: 'blur(50px) saturate(200%)',
+                borderColor: 'rgba(255, 255, 255, 0.5)',
+                boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.9), 0 8px 32px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,0.6)'
+              }}
+            >
               <h1 className="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
-                <span className="block mb-2" style={{ color: '#000000' }}>Welcome to</span>
+                <span className="block mb-2" style={{ color: '#000000' }}>All Premium Services.</span>
                 <span 
                   className="block bg-clip-text text-transparent"
                   style={{
@@ -20,32 +107,43 @@ export const WaitlistHero = () => {
                     backgroundSize: '200% auto',
                   }}
                 >
-                  Ezon
+                  One Place.
                 </span>
               </h1>
             </div>
           </div>
           
-          {/* Description with Glass Module */}
-          <div className="glass-module rounded-xl p-4">
+          {/* Description with Ultra Transparent Glass */}
+          <div 
+            className="rounded-xl p-4 border"
+            style={{
+              background: 'rgba(255, 255, 255, 0.02)',
+              backdropFilter: 'blur(50px) saturate(200%)',
+              WebkitBackdropFilter: 'blur(50px) saturate(200%)',
+              borderColor: 'rgba(255, 255, 255, 0.45)',
+              boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), 0 8px 32px rgba(0,0,0,0.12), 0 1px 0 rgba(255,255,255,0.5)'
+            }}
+          >
             <p className="text-sm xs:text-base sm:text-lg font-normal leading-relaxed max-w-sm" style={{ color: '#000000' }}>
               Premium subscriptions and digital services delivered instantly through our secure platform.
             </p>
           </div>
           
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Ultra Transparent Glass */}
           <div className="flex flex-col w-full gap-3 pt-4">
             <a 
               href="#service-catalog"
-              className="w-full rounded-full font-semibold flex items-center justify-center gap-2 transition-all active:scale-95 touch-manipulation backdrop-blur-[25px] border"
+              className="w-full rounded-full font-semibold flex items-center justify-center gap-2 transition-all active:scale-95 touch-manipulation border"
               style={{ 
                 padding: '1rem 1.5rem',
                 minHeight: '52px',
                 fontSize: '0.9375rem',
-                background: 'linear-gradient(135deg, rgba(245,245,247,0.95) 0%, rgba(226,226,226,0.9) 50%, rgba(245,245,247,0.92) 100%)',
-                color: '#000000', // Pure black for maximum contrast
-                borderColor: 'rgba(161,161,166,0.5)',
-                boxShadow: 'inset 0 2px 4px rgba(255,255,255,0.9), inset 0 -1px 2px rgba(161,161,166,0.4), 0 4px 16px rgba(29,29,31,0.12)'
+                background: 'rgba(255, 255, 255, 0.03)',
+                backdropFilter: 'blur(50px) saturate(200%)',
+                WebkitBackdropFilter: 'blur(50px) saturate(200%)',
+                color: '#000000',
+                borderColor: 'rgba(255, 255, 255, 0.5)',
+                boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.9), 0 8px 32px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,0.6)'
               }}
             >
               Browse Services
@@ -58,15 +156,17 @@ export const WaitlistHero = () => {
               href="https://t.me/Ezonstorebot"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full rounded-full font-medium flex items-center justify-center gap-2 transition-all active:scale-95 touch-manipulation backdrop-blur-[20px] border"
+              className="w-full rounded-full font-medium flex items-center justify-center gap-2 transition-all active:scale-95 touch-manipulation border"
               style={{ 
                 padding: '1rem 1.5rem',
                 minHeight: '52px',
                 fontSize: '0.9375rem',
-                background: 'linear-gradient(135deg, rgba(226,226,226,0.8) 0%, rgba(245,245,247,0.7) 50%, rgba(226,226,226,0.75) 100%)',
-                color: '#1D1D1F',
-                borderColor: 'rgba(161,161,166,0.4)',
-                boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), inset 0 -1px 2px rgba(161,161,166,0.3), 0 4px 16px rgba(29,29,31,0.08)'
+                background: 'rgba(255, 255, 255, 0.02)',
+                backdropFilter: 'blur(50px) saturate(200%)',
+                WebkitBackdropFilter: 'blur(50px) saturate(200%)',
+                color: '#000000',
+                borderColor: 'rgba(255, 255, 255, 0.45)',
+                boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.8), 0 8px 32px rgba(0,0,0,0.12), 0 1px 0 rgba(255,255,255,0.5)'
               }}
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -76,9 +176,18 @@ export const WaitlistHero = () => {
             </a>
           </div>
           
-          {/* Trust Indicators with Glass Module */}
-          <div className="glass-module rounded-lg p-3">
-            <div className="flex items-center justify-center gap-6 text-xs" style={{ color: '#3A3A3C' }}>
+          {/* Trust Indicators with Ultra Transparent Glass */}
+          <div 
+            className="rounded-lg p-3 border"
+            style={{
+              background: 'rgba(255, 255, 255, 0.02)',
+              backdropFilter: 'blur(50px) saturate(200%)',
+              WebkitBackdropFilter: 'blur(50px) saturate(200%)',
+              borderColor: 'rgba(255, 255, 255, 0.4)',
+              boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.7), 0 8px 32px rgba(0,0,0,0.1)'
+            }}
+          >
+            <div className="flex items-center justify-center gap-6 text-xs" style={{ color: '#000000' }}>
               <div className="flex items-center gap-1.5">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#3A3A3C' }}>
                   <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
