@@ -17,7 +17,7 @@ import { WaitlistHero } from './components/ui/waitlist-hero';
 import logoImage from './assets/logo.png';
 import netflixImg from './assets/netfllx.jpg';
 import spotifyImg from './assets/Spotify.jpg';
-import primeImg from './assets/Prime.jpg';
+import youtubeImg from './assets/Youtube.jpg';
 import telegramImg from './assets/Telegram.png';
 import snapchatImg from './assets/Snapchat.jpg';
 import playstationImg from './assets/playstation.jpg';
@@ -60,8 +60,8 @@ const CATALOG_ITEMS = [
     category: 'Entertainment', 
     desc: 'Ad-free videos & background play.', 
     features: ['1 Year', 'Music Included', 'Offline Downloads'], 
-    image: primeImg,
-    imageSrcSet: primeImg,
+    image: youtubeImg,
+    imageSrcSet: youtubeImg,
     botLink: 'https://t.me/Ezonstorebot' 
   },
   
