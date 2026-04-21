@@ -537,7 +537,7 @@ export default function App() {
                    src={logoImage} 
                    alt="Ezon Logo" 
                    className="w-auto object-contain drop-shadow-[0_0_20px_rgba(58,58,60,0.4)]"
-                   style={{ height: 'clamp(3rem, 6vw, 4rem)' }}
+                   style={{ height: 'clamp(5rem, 10vw, 7rem)' }}
                  />
                </div>
                
