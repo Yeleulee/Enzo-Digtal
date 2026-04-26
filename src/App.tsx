@@ -240,24 +240,26 @@ export default function App() {
               href="https://t.me/Ezonstorebot"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full flex items-center justify-center gap-1 sm:gap-2 group transition-all touch-manipulation backdrop-blur-[20px] border" 
+              className="rounded-full flex items-center justify-center gap-1 sm:gap-2 group transition-all touch-manipulation border" 
               style={{ 
                 padding: 'clamp(0.625rem, 1.5vw, 0.75rem) clamp(0.875rem, 2.5vw, 1.5rem)',
                 fontSize: 'clamp(0.6875rem, 1.6vw, 0.875rem)',
                 minHeight: '44px',
                 minWidth: '44px',
-                background: 'linear-gradient(135deg, rgba(58,58,60,0.9) 0%, rgba(29,29,31,0.8) 50%, rgba(58,58,60,0.85) 100%)',
-                color: '#FFFFFF',
-                borderColor: 'rgba(161,161,166,0.4)',
-                boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 8px rgba(29,29,31,0.15)'
+                background: 'rgba(255, 255, 255, 0.01)',
+                backdropFilter: 'blur(60px) saturate(220%) brightness(1.05)',
+                WebkitBackdropFilter: 'blur(60px) saturate(220%) brightness(1.05)',
+                color: '#000000',
+                borderColor: 'rgba(255, 255, 255, 0.6)',
+                boxShadow: 'inset 0 1.5px 3px rgba(255,255,255,1), inset 0 -1px 2px rgba(255,255,255,0.3), 0 8px 32px rgba(0,0,0,0.1)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(29,29,31,0.95) 0%, rgba(58,58,60,0.9) 50%, rgba(29,29,31,0.92) 100%)';
-                e.currentTarget.style.boxShadow = 'inset 0 1px 2px rgba(255,255,255,0.3), 0 4px 16px rgba(29,29,31,0.2)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(58,58,60,0.9) 0%, rgba(29,29,31,0.8) 50%, rgba(58,58,60,0.85) 100%)';
-                e.currentTarget.style.boxShadow = 'inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 8px rgba(29,29,31,0.15)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.01)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.6)';
               }}
               aria-label="Access Platform via Bot"
             >
@@ -267,7 +269,7 @@ export default function App() {
                           style={{ 
                             width: 'clamp(0.875rem, 2vw, 1rem)', 
                             height: 'clamp(0.875rem, 2vw, 1rem)',
-                            color: '#FFFFFF'
+                            color: '#000000'
                           }} />
             </a>
           </div>
