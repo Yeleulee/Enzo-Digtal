@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Ezon - Premium Digital Services for Telegram Mini App">
+    <title>Ezon - Telegram Mini App</title>
+    
+    <style>
+        /* Apple Design System - Liquid Glass Edition */
+        :root {
+            /* Apple HIG Semantic Tokens */
+            --label: #000;
+            --label-2: rgba(60,60,67,.60);
+            --label-3: rgba(60,60,67,.30);
+            --separator: rgba(60,60,67,.29);
+            --bg: #fff;
+            --bg-2: #f2f2f7;
+            --bg-grouped: #f2f2f7;
+            --bg-grouped-cell: #fff;
+            --tint: #0088ff;
+            --green: #34c759;
+            --red: #ff383c;
+            --orange: #ff8d28;
+            
+            /* Apple Type Scale */
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", 
+                          Inter, "Helvetica Neue", Arial, sans-serif;
+            
+            /* Apple Motion */
+            --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+            
+            /* Spacing - 8pt grid */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+        }
+
+        /* CSS Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(200,200,210,0.3) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(180,180,190,0.25) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 20% 80%, rgba(190,190,200,0.2) 0%, transparent 50%),
+                linear-gradient(180deg, 
+                    rgba(235,235,240,1) 0%, 
+                    rgba(225,225,232,1) 50%, 
+                    rgba(220,220,228,1) 100%
+                );
+            background-attachment: fixed;
+            color: var(--label);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.381;
+            font-size: 17px;
+            font-feature-settings: "cv05", "cv11";
+            position: relative;
+        }
+
+        /* Gray Liquid Glass Ambient Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4) 0%, transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(240,240,245,0.3) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(230,230,238,0.25) 0%, transparent 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Frosted Glass Texture Noise */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 0;
+            mix-blend-mode: overlay;
+        }
+
+        /* Apple Liquid Glass Material - The Signature Element */
+        .glass-module {
+            background: rgba(255,255,255,.72);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border: 0.5px solid rgba(255,255,255,.25);
+            border-radius: 22px; /* Apple card radius */
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,.06),
+                inset 0 1px 0 rgba(255,255,255,.6),
+                inset 0 0 0 0.5px rgba(255,255,255,.2);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0); /* GPU acceleration */
+        }
+
+        /* Floating Navigation Bar - True Apple Style */
+        .glass-pill {
+            background: rgba(255,255,255,.65);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 0.5px solid rgba(255,255,255,.3);
+            border-radius: 999px; /* Pill shape */
+            box-shadow: 
+                0 4px 16px rgba(0,0,0,.08),
+                inset 0 1px 0 rgba(255,255,255,.7),
+                inset 0 0 0 0.5px rgba(255,255,255,.25);
+            padding: 13px 24px; /* Apple touch target */
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.012em; /* Optical sizing */
+            cursor: pointer;
+            transition: all 0.3s var(--ease-apple);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            min-height: 44px; /* Apple minimum touch target */
+            color: var(--tint);
+            transform: translateZ(0);
+        }
+
+        .glass-pill:hover {
+            background: rgba(255,255,255,.8);
+            transform: translateY(-1px) translateZ(0);
+            box-shadow: 0 8px 24px rgba(0,0,0,.12);
+        }
+
+        .glass-pill:active {
+            transform: scale(0.97) translateZ(0); /* Apple press feedback */
+            opacity: 0.8;
+        }
+
+        /* Container - Apple Layout Margins */
+        .container {
+            max-width: 90rem;
+            margin: 0 auto;
+            padding: 0 var(--space-4); /* 16pt iOS margins */
+        }
+
+        /* Header - Fixed Floating Apple Navigation with Scroll Effect */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: var(--space-4);
+            transition: all 0.4s var(--ease-apple);
+        }
+
+        header.scrolled {
+            background: rgba(230,230,238,0.85);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            box-shadow: 0 1px 0 0 rgba(0,0,0,0.05);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-4);
+            max-width: 90rem;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 56px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s var(--ease-apple);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Service Section - Apple Title Hierarchy with Top Padding for Fixed Header */
+        .catalog-section {
+            padding: calc(56px + var(--space-8)) var(--space-4) var(--space-8);
+            opacity: 0;
+            animation: fadeIn 0.6s var(--ease-apple) forwards;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            border-bottom: 0.5px solid var(--separator);
+            padding-bottom: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .section-title {
+            font-size: 34px; /* Apple Large Title */
+            font-weight: 700;
+            line-height: 1.21;
+            letter-spacing: -0.022em;
+            margin-bottom: var(--space-3);
+            color: var(--label);
+        }
+
+        .section-desc {
+            font-size: 17px; /* Apple Body */
+            line-height: 1.29;
+            color: var(--label-2);
+            max-width: 40rem;
+        }
+
+        /* Category Filters - Apple Segmented Control Style */
+        .filters {
+            display: flex;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 11px var(--space-5); /* Apple touch target padding */
+            border-radius: 999px;
+            background: var(--bg-grouped-cell);
+            border: 0.5px solid var(--separator);
+            color: var(--label);
+            font-size: 15px; /* Apple Subheadline */
+            font-weight: 600;
+            letter-spacing: -0.008em;
+            text-transform: none; /* Apple doesn't use all-caps */
+            cursor: pointer;
+            transition: all 0.3s var(--ease-apple);
+            min-height: 44px;
+            transform: translateZ(0);
+        }
+
+        .filter-btn:hover {
+            background: var(--bg-2);
+        }
+
+        .filter-btn:active {
+            transform: scale(0.97);
+            opacity: 0.8;
+        }
+
+        .filter-btn.active {
+            background: var(--tint);
+            color: #fff;
+            border-color: var(--tint);
+            box-shadow: 0 2px 8px rgba(0,136,255,0.25);
+        }
+
+        /* Card Grid - Horizontal Grid Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+            gap: var(--space-4);
+        }
+
+        .card {
+            padding: var(--space-2);
+            transition: transform 0.4s var(--ease-apple), box-shadow 0.4s var(--ease-apple), opacity 0.4s var(--ease-apple);
+            cursor: pointer;
+            opacity: 0;
+            animation: cardFadeIn 0.5s var(--ease-apple) forwards;
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger animation for cards */
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.25s; }
+        .card:nth-child(5) { animation-delay: 0.3s; }
+        .card:nth-child(6) { animation-delay: 0.35s; }
+        .card:nth-child(7) { animation-delay: 0.4s; }
+        .card:nth-child(8) { animation-delay: 0.45s; }
+        .card:nth-child(9) { animation-delay: 0.5s; }
+        .card:nth-child(10) { animation-delay: 0.55s; }
+        .card:nth-child(11) { animation-delay: 0.6s; }
+        .card:nth-child(12) { animation-delay: 0.65s; }
+        .card:nth-child(13) { animation-delay: 0.7s; }
+        .card:nth-child(14) { animation-delay: 0.75s; }
+        .card:nth-child(15) { animation-delay: 0.8s; }
+        .card:nth-child(16) { animation-delay: 0.85s; }
+
+        .card:hover {
+            transform: translateY(-4px) translateZ(0);
+            box-shadow: 0 12px 40px rgba(0,0,0,.1);
+        }
+
+        .card:active {
+            transform: scale(0.98) translateZ(0);
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 16px; /* Nested card radius */
+            overflow: hidden;
+            margin-bottom: var(--space-3);
+            background: var(--bg-2);
+            border: 0.5px solid rgba(0,0,0,0.04);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s var(--ease-apple);
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: var(--space-4);
+        }
+
+        .card-header {
+            border-bottom: 0.5px solid var(--separator);
+            padding-bottom: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .card-title {
+            font-size: 20px; /* Apple Title 3 */
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+            margin-bottom: var(--space-2);
+            color: var(--label);
+        }
+
+        .card-desc {
+            font-size: 15px; /* Apple Subheadline */
+            color: var(--label-2);
+            line-height: 1.33;
+        }
+
+        .card-features {
+            margin-bottom: 0;
+        }
+
+        .feature-label {
+            font-size: 13px; /* Apple Footnote */
+            font-weight: 600;
+            letter-spacing: -0.006em;
+            color: var(--label-2);
+            margin-bottom: var(--space-3);
+            display: block;
+        }
+
+        /* Price Cards - Smaller, Professional Typography */
+        .price-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* Tighter spacing */
+        }
+
+        .price-card {
+            background: rgba(255,255,255,.55);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 0.5px solid rgba(255,255,255,.35);
+            border-radius: 10px; /* Slightly smaller radius */
+            padding: 10px 14px; /* Reduced padding */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s var(--ease-apple);
+            cursor: pointer;
+            box-shadow: 
+                0 2px 8px rgba(0,0,0,.03),
+                inset 0 1px 0 rgba(255,255,255,.5);
+            transform: translateZ(0);
+            min-height: 48px; /* Smaller height */
+        }
+
+        .price-card:hover {
+            background: rgba(255,255,255,.7);
+            border-color: var(--label);
+            transform: translateX(4px) translateZ(0);
+            box-shadow: 
+                0 4px 16px rgba(0,0,0,.06),
+                0 0 0 1.5px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,.6);
+        }
+
+        .price-card:active {
+            transform: scale(0.98) translateZ(0);
+            opacity: 0.9;
+        }
+
+        .price-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .price-label {
+            font-size: 15px; /* Professional size */
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--label);
+            line-height: 1.2;
+        }
+
+        .price-duration {
+            font-size: 12px; /* Smaller, refined */
+            color: var(--label-2);
+            letter-spacing: -0.003em;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .price-value {
+            font-size: 17px; /* Reduced from 20px */
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--label);
+            line-height: 1;
+        }
+            font-size: 20px; /* Apple Title 3 - smaller */
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--label); /* Black instead of tint */
+            line-height: 1;
+        }
+
+        /* Footer - Apple Style */
+        footer {
+            text-align: center;
+            padding: var(--space-6) var(--space-4);
+            border-top: 0.5px solid var(--separator);
+            font-size: 13px; /* Apple Footnote */
+            color: var(--label-2);
+            letter-spacing: -0.006em;
+        }
+
+        /* Order Modal - Apple Sheet with Liquid Glass */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s var(--ease-apple);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .modal-sheet {
+            background: rgba(255,255,255,.72);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 0.5px solid rgba(255,255,255,.4);
+            border-radius: 28px 28px 0 0;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(100%);
+            transition: transform 0.5s var(--ease-apple);
+            box-shadow: 
+                0 -20px 60px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,.6),
+                inset 0 0 0 0.5px rgba(255,255,255,.3);
+            position: relative;
+        }
+
+        .modal-sheet::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255,255,255,0.6) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(245,245,247,0.4) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .modal-overlay.active .modal-sheet {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            padding: var(--space-4) var(--space-5);
+            border-bottom: 0.5px solid rgba(0,0,0,0.06);
+            z-index: 10;
+            border-radius: 28px 28px 0 0;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .modal-header:active {
+            cursor: grabbing;
+        }
+
+        .modal-grabber {
+            width: 40px;
+            height: 5px;
+            background: linear-gradient(
+                180deg,
+                rgba(0,0,0,0.2) 0%,
+                rgba(0,0,0,0.14) 100%
+            );
+            border-radius: 999px;
+            margin: 0 auto var(--space-4);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            cursor: grab;
+            transition: all 0.3s var(--ease-apple);
+            position: relative;
+        }
+
+        .modal-grabber::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255,255,255,0.4) 50%,
+                transparent 100%
+            );
+            border-radius: inherit;
+            opacity: 0.6;
+        }
+
+        .modal-grabber:hover {
+            background: linear-gradient(
+                180deg,
+                rgba(0,0,0,0.28) 0%,
+                rgba(0,0,0,0.2) 100%
+            );
+            transform: scaleX(1.12);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .modal-grabber:active {
+            cursor: grabbing;
+            transform: scaleX(1.18) scaleY(0.85);
+            background: linear-gradient(
+                180deg,
+                rgba(0,0,0,0.35) 0%,
+                rgba(0,0,0,0.25) 100%
+            );
+        }
+
+        /* Plan Photo Display */
+        .modal-plan-photo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-4);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 24px rgba(0,0,0,0.12),
+                0 0 0 0.5px rgba(0,0,0,0.06);
+            background: var(--bg-2);
+        }
+
+        .modal-plan-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-title {
+            font-size: 22px; /* Apple Title 2 */
+            font-weight: 700;
+            letter-spacing: -0.018em;
+            text-align: center;
+            color: var(--label);
+            margin-bottom: var(--space-2);
+        }
+
+        .modal-subtitle {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--label);
+            text-align: center;
+            letter-spacing: -0.008em;
+        }
+
+        .modal-content {
+            padding: var(--space-6) var(--space-5) var(--space-8);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Headers */
+        .section-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--label-2);
+            text-transform: uppercase;
+            letter-spacing: -0.004em;
+            margin-bottom: var(--space-3);
+            padding-left: var(--space-1);
+        }
+
+        /* Form Groups - Award-Winning Liquid Glass with Thickness Cues */
+        .form-group {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.03);
+            border: 0.5px solid rgba(255,255,255,0.65);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: var(--space-4);
+            box-shadow: 
+                0 8px 28px rgba(0,0,0,0.06),
+                0 3px 10px rgba(0,0,0,0.04),
+                inset 0 2px 0 rgba(255,255,255,0.9),
+                inset 0 0 0 0.5px rgba(255,255,255,0.45);
+            position: relative;
+            isolation: isolate;
+            transition: all 0.3s var(--ease-apple);
+        }
+
+        /* Lensing effect - light warping at top */
+        .form-group::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 100px;
+            background: radial-gradient(
+                ellipse 80% 60% at 50% 30%,
+                rgba(255,255,255,0.5) 0%,
+                rgba(250,252,255,0.3) 40%,
+                transparent 70%
+            );
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            opacity: 0.8;
+        }
+
+        /* Micro-reflection at top edge */
+        .form-group::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255,255,255,0.9) 50%,
+                transparent 100%
+            );
+            filter: blur(0.3px);
+        }
+
+        .form-group:hover {
+            box-shadow: 
+                0 12px 36px rgba(0,0,0,0.08),
+                0 4px 14px rgba(0,0,0,0.05),
+                inset 0 2px 0 rgba(255,255,255,0.95),
+                inset 0 0 0 0.5px rgba(255,255,255,0.55);
+            transform: translateY(-1px);
+        }
+                180deg,
+                rgba(255,255,255,0.5) 0%,
+                rgba(255,255,255,0.15) 50%,
+                transparent 100%
+            );
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        /* Specular highlight - defines glass thickness */
+        .form-group::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255,255,255,0.95) 50%,
+                transparent 100%
+            );
+            filter: blur(0.3px);
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            padding: var(--space-4);
+            gap: var(--space-3);
+            position: relative;
+            transition: background 0.2s var(--ease-apple);
+        }
+
+        .form-row:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .form-row + .form-row {
+            border-top: 0.5px solid rgba(0,0,0,0.05);
+        }
+
+        .form-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, rgba(28,28,30,1) 0%, rgba(44,44,46,1) 100%);
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: white;
+            flex-shrink: 0;
+            transition: all 0.2s var(--ease-apple);
+            box-shadow: 
+                0 2px 8px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                0 0 0 0.5px rgba(0,0,0,0.2);
+        }
+
+        .form-icon svg {
+            stroke: white;
+            stroke-width: 2.5;
+        }
+
+        .form-icon img {
+            display: block;
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            transition: transform 0.2s var(--ease-apple);
+        }
+
+        .form-row:hover .form-icon {
+            background: linear-gradient(135deg, rgba(28,28,30,1) 0%, rgba(58,58,60,1) 100%);
+            transform: scale(1.03);
+            box-shadow: 
+                0 4px 12px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.15),
+                0 0 0 0.5px rgba(0,0,0,0.25);
+        }
+            transform: scale(1.03);
+            box-shadow: 
+                0 4px 12px rgba(0,0,0,0.12),
+                inset 0 1px 0 rgba(255,255,255,1),
+                0 0 0 0.5px rgba(0,0,0,0.08);
+        }
+
+        .form-row:hover .form-icon img {
+            transform: scale(1.08);
+        }
+
+        .form-input-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--label-2);
+            letter-spacing: -0.006em;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0;
+            border: none;
+            background: transparent;
+            font-size: 17px; /* Apple Body */
+            font-weight: 600;
+            color: var(--label);
+            font-family: var(--font-stack);
+            outline: none;
+        }
+
+        .form-input::placeholder {
+            color: var(--label-3);
+            font-weight: 400;
+        }
+
+        .form-input:disabled {
+            color: var(--label-2);
+        }
+
+        /* File Upload - Premium Liquid Glass with Depth */
+        .upload-section {
+            margin-bottom: var(--space-5);
+        }
+
+        .file-upload {
+            background: rgba(255,255,255,0.62);
+            backdrop-filter: blur(32px) saturate(190%) brightness(1.03);
+            -webkit-backdrop-filter: blur(32px) saturate(190%) brightness(1.03);
+            border: 2px dashed rgba(0,0,0,0.15);
+            border-radius: 24px;
+            padding: var(--space-6) var(--space-5);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 6px 24px rgba(0,0,0,0.04),
+                0 2px 8px rgba(0,0,0,0.02),
+                inset 0 1.5px 0 rgba(255,255,255,0.75),
+                inset 0 0 0 1px rgba(255,255,255,0.35);
+            isolation: isolate;
+        }
+
+        /* Radial lensing effect - creates depth perception */
+        .file-upload::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                ellipse 70% 50% at 50% 30%,
+                rgba(255,255,255,0.6) 0%,
+                rgba(255,255,255,0.25) 35%,
+                rgba(245,248,255,0.15) 60%,
+                transparent 85%
+            );
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        /* Inner thickness highlight */
+        .file-upload::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 20%;
+            right: 20%;
+            height: 1.5px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255,255,255,0.9) 50%,
+                transparent 100%
+            );
+            border-radius: 100%;
+            filter: blur(0.5px);
+        }
+
+        .file-upload:hover {
+            border-color: var(--label);
+            background: rgba(255,255,255,0.75);
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 
+                0 12px 40px rgba(0,0,0,0.08),
+                0 4px 16px rgba(0,0,0,0.04),
+                inset 0 2px 0 rgba(255,255,255,0.85),
+                inset 0 0 0 1px rgba(255,255,255,0.5);
+        }
+
+        .file-upload:active {
+            transform: translateY(-1px) scale(0.99);
+        }
+            pointer-events: none;
+        }
+
+        .file-upload:hover {
+            border-color: var(--label);
+            background: rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 24px rgba(0,0,0,.08),
+                inset 0 1px 0 rgba(255,255,255,.6);
+        }
+
+        .file-upload input {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-3);
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+        .upload-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(28,28,30,1) 0%, rgba(44,44,46,1) 100%);
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            color: white;
+            box-shadow: 
+                0 8px 20px rgba(0,0,0,0.2),
+                inset 0 2px 0 rgba(255,255,255,0.1),
+                0 0 0 0.5px rgba(0,0,0,0.2);
+            transition: all 0.3s var(--ease-apple);
+        }
+
+        .upload-icon svg {
+            stroke: white;
+            stroke-width: 2.5;
+        }
+
+        .file-upload:hover .upload-icon {
+            background: linear-gradient(135deg, rgba(28,28,30,1) 0%, rgba(58,58,60,1) 100%);
+            transform: scale(1.05);
+            box-shadow: 
+                0 12px 28px rgba(0,0,0,0.25),
+                inset 0 2px 0 rgba(255,255,255,0.15),
+                0 0 0 0.5px rgba(0,0,0,0.25);
+        }
+
+        .upload-text {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--label);
+            letter-spacing: -0.012em;
+        }
+
+        .upload-subtext {
+            font-size: 13px;
+            color: var(--label-2);
+            letter-spacing: -0.006em;
+        }
+
+        .file-preview {
+            margin-top: var(--space-4);
+            padding: var(--space-4);
+            background: rgba(52,199,89,0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 0.5px solid rgba(52,199,89,0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            animation: slideIn 0.3s var(--ease-apple);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .file-preview-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--green);
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: white;
+        }
+
+        .file-preview-name {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--label);
+        }
+
+        /* Action Buttons - Liquid Glass */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        /* Primary Button - Solid with Premium Depth */
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(
+                180deg,
+                rgba(28,28,30,1) 0%,
+                rgba(0,0,0,1) 100%
+            );
+            color: white;
+            border: none;
+            border-radius: 999px;
+            padding: 16px var(--space-6);
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.012em;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
+            font-family: var(--font-stack);
+            min-height: 56px;
+            box-shadow: 
+                0 12px 32px rgba(0,0,0,0.28),
+                0 4px 12px rgba(0,0,0,0.15),
+                inset 0 1.5px 0 rgba(255,255,255,0.25),
+                inset 0 0 0 0.5px rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Specular highlight on button */
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.4) 50%,
+                transparent
+            );
+            filter: blur(1px);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(
+                180deg,
+                rgba(40,40,42,1) 0%,
+                rgba(20,20,20,1) 100%
+            );
+            transform: translateY(-3px);
+            box-shadow: 
+                0 16px 48px rgba(0,0,0,0.35),
+                0 6px 20px rgba(0,0,0,0.2),
+                inset 0 2px 0 rgba(255,255,255,0.3),
+                inset 0 0 0 1px rgba(255,255,255,0.15);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
+            box-shadow: 
+                0 8px 24px rgba(0,0,0,0.25),
+                0 2px 8px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        /* Secondary Button - Premium Liquid Glass */
+        .btn-secondary {
+            width: 100%;
+            background: rgba(255,255,255,0.58);
+            backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+            color: var(--label);
+            border: 0.5px solid rgba(255,255,255,0.6);
+            border-radius: 999px;
+            padding: 16px var(--space-6);
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.012em;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
+            font-family: var(--font-stack);
+            min-height: 56px;
+            box-shadow: 
+                0 6px 20px rgba(0,0,0,0.06),
+                0 2px 8px rgba(0,0,0,0.03),
+                inset 0 1.5px 0 rgba(255,255,255,0.8),
+                inset 0 0 0 0.5px rgba(255,255,255,0.4);
+            position: relative;
+            isolation: isolate;
+        }
+
+        /* Glass thickness cue */
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.5) 0%,
+                transparent 50%
+            );
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* Specular highlight */
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 15%;
+            right: 15%;
+            height: 1.5px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.95) 50%,
+                transparent
+            );
+            border-radius: 100%;
+            filter: blur(0.5px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.75);
+            border-color: rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 32px rgba(0,0,0,0.08),
+                0 4px 12px rgba(0,0,0,0.04),
+                inset 0 2px 0 rgba(255,255,255,0.9),
+                inset 0 0 0 1px rgba(255,255,255,0.5);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0) scale(0.98);
+            background: rgba(255,255,255,0.65);
+            box-shadow: 
+                0 4px 16px rgba(0,0,0,0.06),
+                0 1px 4px rgba(0,0,0,0.03),
+                inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+
+        /* Icons */
+        .icon {
+            width: 1rem;
+            height: 1rem;
+            stroke-width: 2;
+        }
+
+        /* Responsive - Apple Breakpoints */
+        @media (max-width: 768px) {
+            header {
+                padding: var(--space-3);
+            }
+
+            .logo {
+                height: 44px;
+            }
+
+            .catalog-section {
+                padding: calc(44px + var(--space-6)) var(--space-3) var(--space-6);
+            }
+
+            .card-grid {
+                gap: var(--space-3);
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 28px; /* Apple Title 1 on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filters {
+                gap: var(--space-2);
+            }
+
+            .filter-btn {
+                font-size: 13px;
+                padding: 10px var(--space-4);
+            }
+        }
+
+        /* Hidden class for filter functionality */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Reduce Motion Support - Apple Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - Floating Apple Navigation -->
+    <header>
+        <nav>
+            <div>
+                <img src="./src/assets/logo.png" alt="Ezon Logo" class="logo">
+            </div>
+        </nav>
+    </header>
+
+    <!-- Service Catalog -->
+    <section id="catalog" class="catalog-section container">
+        <div class="section-header">
+            <h2 class="section-title">Service</h2>
+            <p class="section-desc">Browse our encrypted service roster. Select a category below to filter targeted resources.</p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="filters">
+            <button class="filter-btn active" data-category="All">All</button>
+            <button class="filter-btn" data-category="Entertainment">Entertainment</button>
+            <button class="filter-btn" data-category="Social">Social</button>
+            <button class="filter-btn" data-category="Gaming">Gaming</button>
+            <button class="filter-btn" data-category="Gift Cards">Gift Cards</button>
+            <button class="filter-btn" data-category="Productivity">Productivity</button>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="card-grid">
+            <!-- Netflix -->
+            <div class="glass-module card" data-category="Entertainment">
+                <div class="card-image">
+                    <img src="./src/assets/netfllx.jpg" alt="Netflix Premium" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Netflix Premium</h3>
+                        <p class="card-desc">4K Ultra HD streaming access.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">550 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">495 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">440 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spotify -->
+            <div class="glass-module card" data-category="Entertainment">
+                <div class="card-image">
+                    <img src="./src/assets/Spotify.jpg" alt="Spotify Premium" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Spotify Premium</h3>
+                        <p class="card-desc">Ad-free high-fidelity audio.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">275 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">247 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">220 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube -->
+            <div class="glass-module card" data-category="Entertainment">
+                <div class="card-image">
+                    <img src="./src/assets/Youtube.jpg" alt="YouTube Premium" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">YouTube Premium</h3>
+                        <p class="card-desc">Ad-free videos & background play.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">385 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">357 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">330 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Telegram -->
+            <div class="glass-module card" data-category="Social">
+                <div class="card-image">
+                    <img src="./src/assets/Telegram.png" alt="Telegram Premium" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Telegram Premium</h3>
+                        <p class="card-desc">Enhanced messaging features.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">220 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">192 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">165 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snapchat -->
+            <div class="glass-module card" data-category="Social">
+                <div class="card-image">
+                    <img src="./src/assets/Snapchat.jpg" alt="Snapchat Premium" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Snapchat Premium</h3>
+                        <p class="card-desc">Advanced filters & features.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">165 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">137 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">110 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PlayStation -->
+            <div class="glass-module card" data-category="Gaming">
+                <div class="card-image">
+                    <img src="./src/assets/playstation.jpg" alt="PlayStation Gift Cards" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">PlayStation Gift Cards</h3>
+                        <p class="card-desc">Digital wallet top-up for PlayStation.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Amount</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">1,375 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">2,750 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">5,500 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call of Duty -->
+            <div class="glass-module card" data-category="Gaming">
+                <div class="card-image">
+                    <img src="./src/assets/call of duty.jpg" alt="Call of Duty" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Call of Duty</h3>
+                        <p class="card-desc">Premium gaming experience.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">330 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">302 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">275 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PUBG -->
+            <div class="glass-module card" data-category="Gaming">
+                <div class="card-image">
+                    <img src="./src/assets/pubg.jpg" alt="PUBG Mobile" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">PUBG Mobile</h3>
+                        <p class="card-desc">Mobile gaming premium features.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">275 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">247 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">220 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apple Gift Cards -->
+            <div class="glass-module card" data-category="Gift Cards">
+                <div class="card-image">
+                    <img src="./src/assets/appel.jpg" alt="Apple Gift Cards" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Apple Gift Cards</h3>
+                        <p class="card-desc">App Store & iTunes credit.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Amount</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">1,375 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">2,750 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">5,500 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Play Gift Cards -->
+            <div class="glass-module card" data-category="Gift Cards">
+                <div class="card-image">
+                    <img src="./src/assets/googel play gift cards.jpg" alt="Google Play Gift Cards" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Google Play Gift Cards</h3>
+                        <p class="card-desc">Play Store & Google services credit.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Amount</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">1,375 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">2,750 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">Gift Card</div><div class="price-duration">one-time</div></div><div class="price-value">5,500 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ChatGPT Plus -->
+            <div class="glass-module card" data-category="Productivity">
+                <div class="card-image">
+                    <img src="./src/assets/Chatgpt.jpg" alt="ChatGPT Plus" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">ChatGPT Plus</h3>
+                        <p class="card-desc">Advanced AI assistant access.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">715 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">660 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">605 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Gemini Pro -->
+            <div class="glass-module card" data-category="Productivity">
+                <div class="card-image">
+                    <img src="./src/assets/Gemini.jpg" alt="Google Gemini Pro" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Google Gemini Pro</h3>
+                        <p class="card-desc">Advanced AI by Google.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">825 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">770 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">715 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grok AI -->
+            <div class="glass-module card" data-category="Productivity">
+                <div class="card-image">
+                    <img src="./src/assets/Grock.jpg" alt="Grok AI" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Grok AI (X Premium)</h3>
+                        <p class="card-desc">AI assistant by X (Twitter).</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">440 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">412 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">385 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grammarly -->
+            <div class="glass-module card" data-category="Productivity">
+                <div class="card-image">
+                    <img src="./src/assets/gramarilly.jpg" alt="Grammarly Premium" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Grammarly Premium</h3>
+                        <p class="card-desc">Advanced writing assistant.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">550 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">495 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">440 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TradingView Pro -->
+            <div class="glass-module card" data-category="Productivity">
+                <div class="card-image">
+                    <img src="./src/assets/TradingView Pro.jpg" alt="TradingView Pro" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">TradingView Pro</h3>
+                        <p class="card-desc">Advanced trading charts & analysis.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">1,100 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">1,045 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">990 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NordVPN -->
+            <div class="glass-module card" data-category="Productivity">
+                <div class="card-image">
+                    <img src="./src/assets/nord vpn.jpg" alt="NordVPN Premium" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">NordVPN Premium</h3>
+                        <p class="card-desc">Secure VPN connection worldwide.</p>
+                    </div>
+                    <div class="card-features">
+                        <span class="feature-label">Choose Your Plan</span>
+                        <div class="price-cards">
+                            <div class="price-card"><div class="price-info"><div class="price-label">1 Month</div><div class="price-duration">per month</div></div><div class="price-value">385 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">3 Months</div><div class="price-duration">per month</div></div><div class="price-value">330 Birr</div></div>
+                            <div class="price-card"><div class="price-info"><div class="price-label">6 Months</div><div class="price-duration">per month</div></div><div class="price-value">275 Birr</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Modal - Enhanced Liquid Glass -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-sheet">
+            <div class="modal-header">
+                <div class="modal-grabber"></div>
+                <div class="modal-plan-photo" id="modalPlanPhoto">
+                    <img src="" alt="Plan" id="modalPlanImage">
+                </div>
+                <div class="modal-title">Complete Your Order</div>
+                <div class="modal-subtitle" id="orderDetails"></div>
+            </div>
+            
+            <div class="modal-content">
+                <!-- Contact Information Section -->
+                <div class="section-label">Contact Information</div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="form-icon">
+                            <!-- Icons8 Style: Telegram Icon -->
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21.5 3.5L2 11l7 3.5L17 8l-6 8.5V21l3.5-3.5L20 19l1.5-15.5z" fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="form-input-wrapper">
+                            <label class="form-label">Telegram Username</label>
+                            <input type="text" class="form-input" id="telegramUsername" placeholder="@username" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-icon">
+                            <!-- Icons8 Style: Phone Icon -->
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="form-input-wrapper">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input" id="phoneNumber" placeholder="+251 9XX XXX XXX" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Proof Section -->
+                <div class="upload-section">
+                    <div class="section-label">Payment Verification</div>
+                    <div class="file-upload" onclick="document.getElementById('paymentProof').click()">
+                        <input type="file" id="paymentProof" accept="image/*,.pdf">
+                        <label class="file-upload-label">
+                            <div class="upload-icon">
+                                <!-- Icons8 Style: Upload Cloud Icon -->
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 16C4.79086 16 3 14.2091 3 12C3 9.79086 4.79086 8 7 8C7.1367 8 7.27234 8.00595 7.40656 8.01767C7.77766 5.70107 9.73617 4 12.0833 4C14.7323 4 16.9026 6.03311 17.0767 8.62943C19.2898 8.93639 21 10.7967 21 13.0833C21 15.5872 18.9206 17.6667 16.4167 17.6667H16M12 21V12M12 12L9 15M12 12L15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="upload-text">Upload Payment Proof</div>
+                            <div class="upload-subtext">PNG, JPG or PDF • Max 5MB</div>
+                        </label>
+                        <div id="filePreview" class="file-preview" style="display: none;">
+                            <div class="file-preview-icon">
+                                <!-- Icons8 Style: Check Circle Icon -->
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="#34C759" stroke="#34C759" stroke-width="2"/>
+                                    <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="file-preview-name" id="fileName"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button class="btn-primary" onclick="submitOrder()">Confirm Order</button>
+                    <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer - Apple Style -->
+    <footer>
+        &copy; 2026 Ezon. Sector 04 / Nexus. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Store current order details
+        let currentOrder = {
+            service: '',
+            plan: '',
+            price: '',
+            imageUrl: ''
+        };
+
+        // Category filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const category = button.dataset.category;
+                
+                cards.forEach(card => {
+                    if (category === 'All' || card.dataset.category === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Price card click handler - Open modal
+        document.addEventListener('click', (e) => {
+            const priceCard = e.target.closest('.price-card');
+            if (priceCard) {
+                const card = priceCard.closest('.card');
+                const serviceName = card.querySelector('.card-title').textContent;
+                const planName = priceCard.querySelector('.price-label').textContent;
+                const price = priceCard.querySelector('.price-value').textContent;
+                const imageUrl = card.querySelector('.card-image img').src;
+                
+                currentOrder = { 
+                    service: serviceName, 
+                    plan: planName, 
+                    price: price,
+                    imageUrl: imageUrl
+                };
+                
+                document.getElementById('orderDetails').textContent = 
+                    `${serviceName} • ${planName} • ${price}`;
+                
+                document.getElementById('modalPlanImage').src = imageUrl;
+                document.getElementById('modalPlanImage').alt = serviceName;
+                
+                openModal();
+            }
+        });
+
+        // Modal functions
+        function openModal() {
+            const modal = document.getElementById('orderModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('orderModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Reset form
+            document.getElementById('telegramUsername').value = '';
+            document.getElementById('phoneNumber').value = '';
+            document.getElementById('paymentProof').value = '';
+            document.getElementById('filePreview').style.display = 'none';
+        }
+
+        // Close modal when clicking overlay
+        document.getElementById('orderModal').addEventListener('click', (e) => {
+            if (e.target.id === 'orderModal') {
+                closeModal();
+            }
+        });
+
+        // Drag to dismiss functionality for grabber
+        let dragStartY = 0;
+        let dragCurrentY = 0;
+        let isDragging = false;
+        let modalSheet = null;
+
+        function initializeDragToDismiss() {
+            const grabber = document.querySelector('.modal-grabber');
+            const modalHeader = document.querySelector('.modal-header');
+            modalSheet = document.querySelector('.modal-sheet');
+            
+            if (!grabber || !modalSheet) return;
+
+            // Touch events
+            grabber.addEventListener('touchstart', handleDragStart, { passive: false });
+            modalHeader.addEventListener('touchstart', handleDragStart, { passive: false });
+            document.addEventListener('touchmove', handleDragMove, { passive: false });
+            document.addEventListener('touchend', handleDragEnd);
+
+            // Mouse events for desktop
+            grabber.addEventListener('mousedown', handleDragStart);
+            modalHeader.addEventListener('mousedown', handleDragStart);
+            document.addEventListener('mousemove', handleDragMove);
+            document.addEventListener('mouseup', handleDragEnd);
+        }
+
+        function handleDragStart(e) {
+            // Only allow dragging from grabber or header area
+            if (!e.target.closest('.modal-grabber') && !e.target.closest('.modal-header')) {
+                return;
+            }
+
+            isDragging = true;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            dragStartY = clientY;
+            dragCurrentY = clientY;
+            
+            // Add grabbing cursor
+            document.body.style.cursor = 'grabbing';
+            modalSheet.style.transition = 'none';
+        }
+
+        function handleDragMove(e) {
+            if (!isDragging) return;
+            
+            e.preventDefault();
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            dragCurrentY = clientY;
+            const deltaY = dragCurrentY - dragStartY;
+            
+            // Only allow dragging down
+            if (deltaY > 0) {
+                const translateY = Math.min(deltaY, window.innerHeight * 0.5);
+                modalSheet.style.transform = `translateY(${translateY}px)`;
+                
+                // Fade out overlay based on drag distance
+                const modal = document.getElementById('orderModal');
+                const opacity = Math.max(0, 1 - (deltaY / 400));
+                modal.style.opacity = opacity;
+            }
+        }
+
+        function handleDragEnd(e) {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            document.body.style.cursor = '';
+            
+            const deltaY = dragCurrentY - dragStartY;
+            const threshold = 100; // pixels to trigger close
+            
+            // Re-enable transitions
+            modalSheet.style.transition = 'transform 0.4s cubic-bezier(0.28, 0.11, 0.32, 1)';
+            
+            if (deltaY > threshold) {
+                // Close modal with animation
+                closeModal();
+            } else {
+                // Snap back to original position
+                modalSheet.style.transform = 'translateY(0)';
+                const modal = document.getElementById('orderModal');
+                modal.style.opacity = '1';
+            }
+            
+            // Reset after animation
+            setTimeout(() => {
+                modalSheet.style.transition = '';
+            }, 400);
+        }
+
+        // Initialize drag functionality when modal opens
+        const originalOpenModal = openModal;
+        openModal = function() {
+            originalOpenModal();
+            setTimeout(initializeDragToDismiss, 100);
+        };
+
+        // File upload preview
+        document.getElementById('paymentProof').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('filePreview').style.display = 'flex';
+            }
+        });
+
+        // Submit order
+        function submitOrder() {
+            const username = document.getElementById('telegramUsername').value;
+            const phone = document.getElementById('phoneNumber').value;
+            const file = document.getElementById('paymentProof').files[0];
+
+            if (!username || !phone || !file) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Here you would typically send this to your backend/Telegram bot
+            console.log('Order submitted:', {
+                ...currentOrder,
+                username,
+                phone,
+                file: file.name
+            });
+
+            // Show success message
+            alert(`Order confirmed! We'll contact you on Telegram (${username}) shortly.`);
+            closeModal();
+        }
+
+        // Navbar scroll effect
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Page fade-in on load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.6s cubic-bezier(0.28, 0.11, 0.32, 1)';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
