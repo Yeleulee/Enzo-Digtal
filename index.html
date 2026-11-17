@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Ezon - Premium Digital Services for Telegram Mini App">
     <title>Ezon - Telegram Mini App</title>
+    <link rel="icon" type="image/png" href="./src/assets/logo.png">
+    <meta name="theme-color" content="#f2f2f7">
     
     <style>
         /* Apple Design System - Liquid Glass Edition */
@@ -457,12 +459,6 @@
             color: var(--label);
             line-height: 1;
         }
-            font-size: 20px; /* Apple Title 3 - smaller */
-            font-weight: 700;
-            letter-spacing: -0.015em;
-            color: var(--label); /* Black instead of tint */
-            line-height: 1;
-        }
 
         /* Footer - Apple Style */
         footer {
@@ -717,14 +713,6 @@
                 inset 0 0 0 0.5px rgba(255,255,255,0.55);
             transform: translateY(-1px);
         }
-                180deg,
-                rgba(255,255,255,0.5) 0%,
-                rgba(255,255,255,0.15) 50%,
-                transparent 100%
-            );
-            pointer-events: none;
-            mix-blend-mode: overlay;
-        }
 
         /* Specular highlight - defines glass thickness */
         .form-group::after {
@@ -796,12 +784,6 @@
                 0 4px 12px rgba(0,0,0,0.2),
                 inset 0 1px 0 rgba(255,255,255,0.15),
                 0 0 0 0.5px rgba(0,0,0,0.25);
-        }
-            transform: scale(1.03);
-            box-shadow: 
-                0 4px 12px rgba(0,0,0,0.12),
-                inset 0 1px 0 rgba(255,255,255,1),
-                0 0 0 0.5px rgba(0,0,0,0.08);
         }
 
         .form-row:hover .form-icon img {
@@ -915,8 +897,6 @@
 
         .file-upload:active {
             transform: translateY(-1px) scale(0.99);
-        }
-            pointer-events: none;
         }
 
         .file-upload:hover {
