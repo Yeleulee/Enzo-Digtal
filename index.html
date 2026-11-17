@@ -7,6 +7,7 @@
     <title>Ezon - Telegram Mini App</title>
     <link rel="icon" type="image/png" href="./src/assets/logo.png">
     <meta name="theme-color" content="#f2f2f7">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     
     <style>
         /* Apple Design System - Liquid Glass Edition */
@@ -468,6 +469,16 @@
             font-size: 13px; /* Apple Footnote */
             color: var(--label-2);
             letter-spacing: -0.006em;
+        }
+
+        footer a {
+            color: var(--label);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
 
         /* Order Modal - Apple Sheet with Liquid Glass */
@@ -1668,6 +1679,11 @@
     <!-- Footer - Apple Style -->
     <footer>
         &copy; 2026 Ezon. Sector 04 / Nexus. All Rights Reserved.
+        <div style="margin-top: 8px;">
+            <a href="https://t.me/Ezonstorebot" target="_blank" rel="noopener noreferrer">Order via @Ezonstorebot</a>
+            &nbsp;·&nbsp;
+            <a href="https://t.me/enzostoreowner" target="_blank" rel="noopener noreferrer">Support</a>
+        </div>
     </footer>
 
     <script>
@@ -1861,25 +1877,32 @@
 
         // Submit order
         function submitOrder() {
-            const username = document.getElementById('telegramUsername').value;
-            const phone = document.getElementById('phoneNumber').value;
-            const file = document.getElementById('paymentProof').files[0];
+            const username = document.getElementById('telegramUsername').value.trim();
+            const phone = document.getElementById('phoneNumber').value.trim();
 
-            if (!username || !phone || !file) {
-                alert('Please fill in all fields');
+            if (!username || !phone) {
+                alert('Please enter your Telegram username and phone number.');
                 return;
             }
 
-            // Here you would typically send this to your backend/Telegram bot
-            console.log('Order submitted:', {
-                ...currentOrder,
-                username,
-                phone,
-                file: file.name
-            });
+            const message = [
+                'New order from the Ezon website',
+                `Service: ${currentOrder.service}`,
+                `Plan: ${currentOrder.plan}`,
+                `Price: ${currentOrder.price}`,
+                `Telegram: ${username}`,
+                `Phone: ${phone}`
+            ].join('\n');
 
-            // Show success message
-            alert(`Order confirmed! We'll contact you on Telegram (${username}) shortly.`);
+            const telegramUrl = `https://t.me/enzostoreowner?text=${encodeURIComponent(message)}`;
+
+            if (window.Telegram?.WebApp?.openTelegramLink) {
+                window.Telegram.WebApp.openTelegramLink(telegramUrl);
+            } else {
+                window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+            }
+
+            alert('Opening Telegram… Send the pre-filled message and attach your payment screenshot in the chat to confirm your order.');
             closeModal();
         }
 
@@ -1896,6 +1919,12 @@
 
         // Page fade-in on load
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Telegram Mini App when opened inside Telegram
+            if (window.Telegram?.WebApp) {
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand();
+            }
+
             document.body.style.opacity = '0';
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.6s cubic-bezier(0.28, 0.11, 0.32, 1)';
